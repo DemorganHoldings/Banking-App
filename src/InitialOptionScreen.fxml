@@ -66,6 +66,11 @@
                </children>
             </Pane>
             <Separator layoutX="633.0" layoutY="107.0" orientation="VERTICAL" prefHeight="340.0" prefWidth="2.0" style="-fx-background-color: #000000;" />
+            <Label layoutX="456.0" layoutY="38.0" text="Please Choose An Option">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>
