@@ -17,9 +17,9 @@
                         <Image url="@Logo.png" />
                      </image>
                   </ImageView>
-                  <TextField layoutX="40.0" layoutY="143.0" prefHeight="27.0" prefWidth="194.0" promptText="Username" />
-                  <TextField layoutX="40.0" layoutY="183.0" prefHeight="27.0" prefWidth="194.0" promptText="Password" />
-                  <Button layoutX="40.0" layoutY="220.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="194.0" style="-fx-background-color: #2196F3;" text="Log In" textFill="WHITE">
+                  <TextField fx:id="textboxUsername" layoutX="40.0" layoutY="143.0" prefHeight="27.0" prefWidth="194.0" promptText="Username" />
+                  <TextField fx:id="textboxPassword" layoutX="40.0" layoutY="183.0" prefHeight="27.0" prefWidth="194.0" promptText="Password" />
+                  <Button fx:id="buttonLogIn" layoutX="40.0" layoutY="220.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="194.0" style="-fx-background-color: #2196F3;" text="Log In" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
