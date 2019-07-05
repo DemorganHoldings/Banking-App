@@ -208,7 +208,7 @@ public class CreateDB {
                     "  TransactionID CHAR(15),"+
                     "  TransactionType CHAR(15),"+
                     "  TransactionDescription CHAR(100),"+
-                    "  Date&Time CHAR(25) )");
+                    "  DateTime CHAR(25) )");
 
             System.out.println("Transactions table created.");
         }
