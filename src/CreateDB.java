@@ -4,10 +4,10 @@ public class CreateDB {
     public static void main(String[] args) {
         // Create a named constant for the URL.
         // NOTE: This value is specific for MySQL.
-        final String DB_URL = "jdbc:mysql://localhost:3306/";
-        final String DB_COFFEE_URL = "jdbc:mysql://localhost:3306/coffeeDB";
+        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/";
+        final String DB_COFFEE_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
-        final String PASSWORD = "";
+        final String PASSWORD = "F{G8B-7ThWxM?ut5";
 
         try {
             // Create a connection to the database.
@@ -21,14 +21,20 @@ public class CreateDB {
             Connection conn2 =
                     DriverManager.getConnection(DB_COFFEE_URL, USERNAME, PASSWORD);
 
-            // Build the Coffee table.
-            buildCoffeeTable(conn2);
-
             // Build the Customer table.
             buildCustomerTable(conn2);
 
-            // Build the UnpaidInvoice table.
-            buildUnpaidOrderTable(conn2);
+            // Build the BankStaff table.
+            buildBankStaffTable(conn2);
+
+            // Build the CheckingAccount table.
+            buildCheckingAccountTable(conn2);
+
+            // Build the CreditCard table.
+            buildCreditCardTable(conn2);
+
+            // Build the Transactions table.
+            buildTransactionsTable(conn2);
 
             // Close the connection.
             conn2.close();
@@ -50,7 +56,7 @@ public class CreateDB {
 
             //Drop the existing database
             try {
-                stmt.executeUpdate("Drop DATABASE coffeeDB");
+                stmt.executeUpdate("Drop DATABASE spDemorganDB");
             }
             catch(SQLException ex) {
                 // No need to report an error.
@@ -58,9 +64,9 @@ public class CreateDB {
             }
             //Create a new database
             try {
-                stmt.execute("Create DATABASE coffeeDB");
+                stmt.execute("Create DATABASE spDemorganDB");
                 //stmt.execute("USE coffee");
-                System.out.println("Database coffee created.");
+                System.out.println("Database spDemorgan created.");
             }
             catch(SQLException ex) {
                 // No need to report an error.
@@ -70,137 +76,6 @@ public class CreateDB {
         catch(SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
             ex.printStackTrace();
-        }
-    }
-
-    /**
-     * The buildCoffeeTable method creates the
-     * Coffee table and adds some rows to it.
-     */
-    public static void buildCoffeeTable(Connection conn){
-        try {
-            // Get a Statement object.
-            Statement stmt = conn.createStatement();
-
-            // Create the table.
-            stmt.execute("CREATE TABLE Coffee (" +
-                    "Description CHAR(25), " +
-                    "ProdNum CHAR(10) NOT NULL PRIMARY KEY, " +
-                    "Price DOUBLE " +
-                    ")");
-
-            // Insert row #1.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Bolivian Dark', " +
-                    "'14-001', " +
-                    "8.95 )" );
-
-            // Insert row #1.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Bolivian Medium', " +
-                    "'14-002', " +
-                    "8.95 )");
-
-            // Insert row #2.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Brazilian Dark', " +
-                    "'15-001', " +
-                    "7.95 )");
-
-            // Insert row #3.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Brazilian Medium', " +
-                    "'15-002', " +
-                    "7.95 )");
-
-            // Insert row #4.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Brazilian Decaf', " +
-                    "'15-003', " +
-                    "8.55 )" );
-
-            // Insert row #5.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Central American Dark', " +
-                    "'16-001', " +
-                    "9.95 )");
-
-            // Insert row #6.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Central American Medium', " +
-                    "'16-002', " +
-                    "9.95 )");
-
-            // Insert row #1.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Sumatra Dark', " +
-                    "'17-001', " +
-                    "7.95 )");
-
-            // Insert row #7.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Sumatra Decaf', " +
-                    "'17-002', " +
-                    "8.95 )");
-
-            // Insert row #8.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Sumatra Medium', " +
-                    "'17-003', " +
-                    "7.95 )");
-
-            // Insert row #9.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Sumatra Organic Dark', " +
-                    "'17-004', " +
-                    "11.95 )");
-
-            // Insert row #10.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Kona Medium', " +
-                    "'18-001', " +
-                    "18.45 )");
-
-            // Insert row #11.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Kona Dark', " +
-                    "'18-002', " +
-                    "18.45 )");
-
-            // Insert row #12.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'French Roast Dark', " +
-                    "'19-001', " +
-                    "9.65 )");
-
-            // Insert row #13.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Galapagos Medium', " +
-                    "'20-001', " +
-                    "6.85 )");
-
-            // Insert row #14.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Guatemalan Dark', " +
-                    "'21-001', " +
-                    "9.95 )");
-
-            // Insert row #15.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Guatemalan Decaf', " +
-                    "'21-002', " +
-                    "10.45 )");
-
-            // Insert row #16.
-            stmt.execute("INSERT INTO Coffee VALUES ( " +
-                    "'Guatemalan Medium', " +
-                    "'21-003', " +
-                    "9.95 )");
-
-            System.out.println("Coffee table created.");
-        }
-        catch (SQLException ex) {
-            System.out.println("ERROR: " + ex.getMessage());
         }
     }
 
@@ -215,26 +90,26 @@ public class CreateDB {
 
             // Create the table.
             stmt.execute("CREATE TABLE Customer" +
-                    "( CustomerNumber CHAR(10) NOT NULL PRIMARY KEY, " +
+                    "( CustomerID CHAR(10) NOT NULL PRIMARY KEY, " +
                     "  Name CHAR(25),"    +
                     "  Address CHAR(25)," +
-                    "  City CHAR(12),"    +
-                    "  State CHAR(2),"    +
-                    "  Zip CHAR(5) )");
+                    "  Social CHAR(15),"    +
+                    "  PhoneNumber CHAR(15),"    +
+                    "  Email CHAR(25) )");
 
             // Add some rows to the new table.
             stmt.executeUpdate("INSERT INTO Customer VALUES" +
-                    "('101', 'Downtown Cafe', '17 N. Main Street'," +
-                    " 'Asheville', 'NC', '55515')");
+                    "('101', 'Person1', '17 N. Main Street'," +
+                    " '123-45-6789', '(702) 123-4567', 'fake@gmail.com')");
 
             stmt.executeUpdate("INSERT INTO Customer VALUES" +
-                    "('102', 'Main Street Grocery'," +
+                    "('102', 'Person2'," +
                     " '110 E. Main Street'," +
-                    " 'Canton', 'NC', '55555')");
+                    " '123-45-6789', '(702) 123-4567', 'fake@gmail.com')");
 
             stmt.executeUpdate("INSERT INTO Customer VALUES" +
-                    "('103', 'The Coffee Place', '101 Center Plaza'," +
-                    " 'Waynesville', 'NC', '55516')");
+                    "('103', 'Person3', '101 Center Plaza'," +
+                    " '123-45-6789', '(702) 123-4567', 'fake@gmail.com')");
 
             System.out.println("Customer table created.");
         }
@@ -244,24 +119,98 @@ public class CreateDB {
     }
 
     /**
-     * The buildUnpaidOrderTable method creates
-     * the UnpaidOrder table.
+     * The buildBankStaffTable method creates
+     * the BankStaff table.
      */
 
-    public static void buildUnpaidOrderTable(Connection conn){
+    public static void buildBankStaffTable(Connection conn){
         try {
             // Get a Statement object.
             Statement stmt = conn.createStatement();
 
             // Create the table.
-            stmt.execute("CREATE TABLE UnpaidOrder " +
-                    "( CustomerNumber CHAR(10) NOT NULL REFERENCES Customer(CustomerNumber), "+
-                    "  ProdNum CHAR(10) NOT NULL REFERENCES Coffee(ProdNum),"+
-                    "  OrderDate CHAR(10),"+
-                    "  Quantity DOUBLE,"+
-                    "  Cost DOUBLE )");
+            stmt.execute("CREATE TABLE BankStaff" +
+                    "( StaffID CHAR(10), " +
+                    "  Name CHAR(25)," +
+                    "  Username CHAR(25)," +
+                    "  Password CHAR(25)," +
+                    "  isManager BOOLEAN )");
 
-            System.out.println("UnpaidOrder table created.");
+            System.out.println("BankStaff table created.");
+        }
+        catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+    }
+
+    /**
+     * The buildCheckingAccountTable method creates
+     * the CheckingAccount table.
+     */
+
+    public static void buildCheckingAccountTable(Connection conn){
+        try {
+            // Get a Statement object.
+            Statement stmt = conn.createStatement();
+
+            // Create the table.
+            stmt.execute("CREATE TABLE CheckingAccount " +
+                    "( CustomerID CHAR(10) NOT NULL REFERENCES Customer(CustomerID), "+
+                    "  AccountNumber CHAR(10) NOT NULL PRIMARY KEY,"+
+                    "  Balance DOUBLE )");
+
+            System.out.println("CheckingAccount table created.");
+        }
+        catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+    }
+
+    /**
+     * The buildCreditCardTable method creates
+     * the CreditCard table.
+     */
+
+    public static void buildCreditCardTable(Connection conn){
+        try {
+            // Get a Statement object.
+            Statement stmt = conn.createStatement();
+
+            // Create the table.
+            stmt.execute("CREATE TABLE CreditCard " +
+                    "( CustomerID CHAR(10) NOT NULL REFERENCES Customer(CustomerID), "+
+                    "  CreditCardNum CHAR(25),"+
+                    "  ExpirationDate CHAR(15),"+
+                    "  CVV INTEGER,"+
+                    "  CreditLimit DOUBLE )");
+
+            System.out.println("CreditCard table created.");
+        }
+        catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+    }
+
+    /**
+     * The buildTransactionsTable method creates
+     * the Transactions table.
+     */
+
+    public static void buildTransactionsTable(Connection conn){
+        try {
+            // Get a Statement object.
+            Statement stmt = conn.createStatement();
+
+            // Create the table.
+            stmt.execute("CREATE TABLE Transactions " +
+                    "( CustomerID CHAR(10) NOT NULL REFERENCES Customer(CustomerID), "+
+                    "  AccountNumber CHAR(10) NOT NULL REFERENCES CheckingAccount(AccountNumber),"+
+                    "  TransactionID CHAR(15),"+
+                    "  TransactionType CHAR(15),"+
+                    "  TransactionDescription CHAR(100),"+
+                    "  DateTime CHAR(25) )");
+
+            System.out.println("Transactions table created.");
         }
         catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
