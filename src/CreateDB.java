@@ -129,7 +129,7 @@ public class CreateDB {
             Statement stmt = conn.createStatement();
 
             // Create the table.
-            stmt.execute("CREATE TABLE Customer" +
+            stmt.execute("CREATE TABLE BankStaff" +
                     "( StaffID CHAR(10), " +
                     "  Name CHAR(25)," +
                     "  Username CHAR(25)," +
