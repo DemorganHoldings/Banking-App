@@ -1,13 +1,16 @@
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Random;
 
 public class Transaction {
     private String customerId;
     private String accountNumber;
     private String transactionId;
     private String transactionType;
+    private double transactionAmount;
     private Date transactionDateTime;
 
-    public Transaction (String custId, String number, String tranType, Date tranDateTime) {
+    public Transaction (String custId, String tranType, double amount, Date tranDateTime) {
 
     }
 
@@ -31,8 +34,12 @@ public class Transaction {
         return transactionId;
     }
 
-    public void setTransactionId(String transactionId) {
-        this.transactionId = transactionId;
+    public void generateTransactionId() {
+        LocalDate currentDate = LocalDate.now(); // Create a date object
+        Random rand = new Random();
+        int randomNumber = rand.nextInt(999999) + 1;
+        String randomNumberString = String.format("%06d", randomNumber);
+        this.transactionId = this.transactionType.charAt(0) + "-" + currentDate + "-" + randomNumberString;
     }
 
     public String getTransactionType() {
@@ -41,6 +48,14 @@ public class Transaction {
 
     public void setTransactionType(String transactionType) {
         this.transactionType = transactionType;
+    }
+
+    public double getTransactionAmount() {
+        return transactionAmount;
+    }
+
+    public void setTransactionAmount(double transactionAmount) {
+        this.transactionAmount = transactionAmount;
     }
 
     public Date getTransactionDateTime() {
