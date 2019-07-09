@@ -1,6 +1,11 @@
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import javafx.event.ActionEvent;
+import java.io.IOException;
 import java.sql.*;
 import java.text.DecimalFormat;
 
@@ -95,7 +100,36 @@ public class NewTransactionScreenController {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+    }
 
+    public void cancel(ActionEvent e){
+        // the FXML loader object to load the UI design
+        FXMLLoader loader = new FXMLLoader();
+        // specify the file location
+        loader.setLocation(getClass().getResource("CheckingAccountScreen.fxml"));
+
+        // the object representing the root node of the scene
+        Parent parent;
+        // try-catch for possible errors in reading the FXML file.
+        try {
+            // load the UI
+            parent = loader.load();
+
+            // set the scene
+            Scene scene = new Scene(parent);
+
+            CheckingAccountScreenController controller = loader.getController();
+            controller.initialize(customerID);
+
+            // get the current window; i.e. the stage
+            Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+            // set the scene for the stage
+            stage.setScene(scene);
+            // show the stage
+            stage.show();
+        } catch (IOException e1) {
+            System.out.print(e1.getMessage());
+        }
     }
 
 }
