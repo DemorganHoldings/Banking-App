@@ -78,27 +78,4 @@ public class LoginController {
             System.out.println(ex);
         }
     }
-
-/*
-    public void loginAccountListener(ActionEvent e) throws Exception{
-        String username, password;
-
-        username = textboxUsername.getText();
-        password = textboxPassword.getText();
-
-
-        if(username.equals("root") && password.equals("")){
-
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("InitialOptionScreen.fxml"));
-            Parent parent = loader.load();
-            Scene scene = new Scene(parent);
-
-            Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-
-            stage.setScene(scene);
-            stage.show();
-        }
-    } */
-
 }

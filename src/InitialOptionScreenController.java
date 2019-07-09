@@ -26,7 +26,7 @@ public class InitialOptionScreenController {
     private TextField textboxNewCustomerAddress;
 
     @FXML
-    private TextField textboxNewCustomerName1;
+    private TextField textboxNewCustomerName;
 
     @FXML
     private TextField textboxExistingCustomerName;
@@ -42,6 +42,19 @@ public class InitialOptionScreenController {
 
     @FXML
     void e91e63(ActionEvent event) {
+
+    }
+
+    public void createAccount(){
+        String name, address, phone, email, social;
+
+        name = textboxNewCustomerName.getText();
+        address = textboxNewCustomerAddress.getText();
+        phone = textboxNewCustomerPhoneNum.getText();
+        email = textboxNewCustomerEmailAddress.getText();
+        social = textboxNewCustomerSocial.getText();
+
+
 
     }
 }
