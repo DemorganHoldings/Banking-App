@@ -8,7 +8,7 @@ public class CreateDB {
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/";
         final String DB_COFFEE_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
-        final String PASSWORD = "F{G8B-7ThWxM?ut5";
+        final String PASSWORD = "password123";
 
         try {
             // Create a connection to the database.

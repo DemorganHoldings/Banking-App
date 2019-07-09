@@ -25,6 +25,8 @@ public class Customer {
         this.customerId = "SPC-" + currentDate + "-" + randomNumberString;
     }
 
+    public void setCustomerId(String customerId) {this.customerId = customerId;}
+
     public String getCustomerId() {
         return customerId;
     }

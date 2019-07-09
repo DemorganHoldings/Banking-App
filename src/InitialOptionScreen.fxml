@@ -39,7 +39,7 @@
                   </Label>
                   <TextField fx:id="textboxExistingCustomerName" layoutX="40.0" layoutY="95.0" promptText="Customer Name" />
                   <TextField fx:id="textboxExistingSocialSecurity" layoutX="40.0" layoutY="134.0" promptText="Social Security Number" />
-                  <Button fx:id="buttonSearchExistingCustomer" layoutX="41.0" layoutY="168.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Search" textFill="WHITE">
+                  <Button fx:id="buttonSearchExistingCustomer" layoutX="41.0" layoutY="168.0" mnemonicParsing="false" onAction="#searchAccount" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Search" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

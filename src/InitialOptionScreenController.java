@@ -102,8 +102,8 @@ public class InitialOptionScreenController {
                 // set the scene
                 Scene scene = new Scene(parent);
 
-//                CheckingAccountScreenController controller = loader.getController();
-//                controller.initData(account.getCustomerId());
+                //CheckingAccountScreenController controller = loader.getController();
+                //controller.initData(account.getCustomerId());
 
                 // get the current window; i.e. the stage
                 Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -119,4 +119,30 @@ public class InitialOptionScreenController {
             System.out.println(ex.getMessage());
         }
     }
+
+    public void searchAccount(ActionEvent e) {
+        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "password123";
+        String name, social;
+
+        try {
+            name = textboxExistingCustomerName.getText();
+            social = textboxExistingSocialSecurity.getText();
+
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+            Statement stmt = conn.createStatement(); //Create new statement object
+
+            String sql = "SELECT CustomerID, Name, Address, Social, PhoneNumber, Email FROM Customer WHERE Name = '" + name + "' && Social = '" + social + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                Customer customer = new Customer(rs.getString("Name"), rs.getString("Address"), rs.getString("Social"), rs.getString("PhoneNumber"), rs.getString("Email"));
+                customer.setCustomerId(rs.getString("CustomerID"));
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
 }
