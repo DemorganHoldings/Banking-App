@@ -10,7 +10,11 @@ public class Customer {
     private String customerEmailAddress;
 
     public Customer(String name, String address, String social, String phone, String email) {
-
+        this.customerName = name;
+        this.customerAddress = address;
+        this.customerSocial = social;
+        this.customerPhoneNum = phone;
+        this.customerEmailAddress = email;
     }
 
     public void generateCustomerId() {
