@@ -46,15 +46,37 @@ public class InitialOptionScreenController {
     }
 
     public void createAccount(){
+        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "password123";
         String name, address, phone, email, social;
 
-        name = textboxNewCustomerName.getText();
-        address = textboxNewCustomerAddress.getText();
-        phone = textboxNewCustomerPhoneNum.getText();
-        email = textboxNewCustomerEmailAddress.getText();
-        social = textboxNewCustomerSocial.getText();
+        try {
+            name = textboxNewCustomerName.getText();
+            address = textboxNewCustomerAddress.getText();
+            phone = textboxNewCustomerPhoneNum.getText();
+            email = textboxNewCustomerEmailAddress.getText();
+            social = textboxNewCustomerSocial.getText();
+            Customer customer = new Customer(name, address, social, phone, email);
 
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+            Statement stmt = conn.createStatement(); //Create new statement object
 
+            String sql = "INSERT INTO Customer " +
+                    "(CustomerID, Name, Address, Social, PhoneNumber, Email) " +
+                    "VALUES ('" +
+                    customer.getCustomerId() + "', '" +
+                    customer.getCustomerName() + "', '" +
+                    customer.getCustomerAddress() + "', '" +
+                    customer.getCustomerSocial() + "', '" +
+                    customer.getCustomerPhoneNum() + "', '" +
+                    customer.getCustomerEmailAddress() + "')";
 
+            stmt.executeUpdate(sql);
+            conn.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
