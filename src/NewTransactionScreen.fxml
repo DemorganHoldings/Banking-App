@@ -21,20 +21,20 @@
                </children>
             </Pane>
             <TextField fx:id="textboxTransactionAmount" layoutX="492.0" layoutY="272.0" prefHeight="25.0" prefWidth="276.0" promptText="Transaction Amount" />
-            <RadioButton fx:id="radiobuttonWithdraw" layoutX="492.0" layoutY="231.0" mnemonicParsing="false" selected="true" text="Withdraw">
+            <RadioButton fx:id="radiobuttonWithdraw" layoutX="492.0" layoutY="231.0" mnemonicParsing="false" onAction="#availableOptions" selected="true" text="Withdraw">
                <toggleGroup>
                   <ToggleGroup fx:id="groupTransactionType" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="radiobuttonDeposit" layoutX="599.0" layoutY="231.0" mnemonicParsing="false" text="Deposit" toggleGroup="$groupTransactionType" />
-            <RadioButton fx:id="radiobuttonTransfer" layoutX="704.0" layoutY="231.0" mnemonicParsing="false" text="Transfer" toggleGroup="$groupTransactionType" />
+            <RadioButton fx:id="radiobuttonDeposit" layoutX="599.0" layoutY="231.0" mnemonicParsing="false" onAction="#availableOptions" text="Deposit" toggleGroup="$groupTransactionType" />
+            <RadioButton fx:id="radiobuttonTransfer" layoutX="704.0" layoutY="231.0" mnemonicParsing="false" onAction="#availableOptions" text="Transfer" toggleGroup="$groupTransactionType" />
             <TextField fx:id="textboxTransferToAccountNumber" layoutX="492.0" layoutY="420.0" prefHeight="25.0" prefWidth="276.0" promptText="Transfer To: Account Number" visible="false" />
             <Button fx:id="buttonCancelTransaction" layoutX="684.0" layoutY="461.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #E0E0E0;" text="Cancel">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="buttonSaveTransaction" layoutX="585.0" layoutY="461.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #2196F3;" text="Save" textFill="WHITE">
+            <Button fx:id="buttonSaveTransaction" layoutX="585.0" layoutY="461.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #2196F3;" text="Save" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -67,7 +67,7 @@
             <TextArea fx:id="textboxTransactionDescription" layoutX="492.0" layoutY="311.0" prefHeight="59.0" prefWidth="274.0" promptText="Description" />
             <RadioButton fx:id="radiobuttonIsCash" layoutX="492.0" layoutY="386.0" mnemonicParsing="false" text="Cash" visible="false" />
             <RadioButton fx:id="radiobuttonIsCheck" layoutX="577.0" layoutY="386.0" mnemonicParsing="false" text="Check" visible="false" />
-            <Button fx:id="buttonChooseCheckFile" layoutX="674.0" layoutY="381.0" mnemonicParsing="false" text="Choose File" visible="false" />
+            <Button fx:id="buttonChooseCheckFile" layoutX="674.0" layoutY="381.0" mnemonicParsing="false" onAction="#filePicker" text="Choose File" visible="false" />
          </children>
       </Pane>
    </center>
