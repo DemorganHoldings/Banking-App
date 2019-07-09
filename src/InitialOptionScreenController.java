@@ -102,8 +102,8 @@ public class InitialOptionScreenController {
                 // set the scene
                 Scene scene = new Scene(parent);
 
-                //CheckingAccountScreenController controller = loader.getController();
-                //controller.initData(account.getCustomerId());
+                CheckingAccountScreenController controller = loader.getController();
+                controller.initialize(account.getCustomerId());
 
                 // get the current window; i.e. the stage
                 Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -126,6 +126,7 @@ public class InitialOptionScreenController {
         final String PASSWORD = "password123";
         String name, social;
 
+        Customer customer;
         try {
             name = textboxExistingCustomerName.getText();
             social = textboxExistingSocialSecurity.getText();
@@ -135,11 +136,41 @@ public class InitialOptionScreenController {
 
             String sql = "SELECT CustomerID, Name, Address, Social, PhoneNumber, Email FROM Customer WHERE Name = '" + name + "' && Social = '" + social + "'";
             ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                Customer customer = new Customer(rs.getString("Name"), rs.getString("Address"), rs.getString("Social"), rs.getString("PhoneNumber"), rs.getString("Email"));
-                customer.setCustomerId(rs.getString("CustomerID"));
+            rs.next();
+
+            customer = new Customer(rs.getString("Name"), rs.getString("Address"), rs.getString("Social"), rs.getString("PhoneNumber"), rs.getString("Email"));
+            customer.setCustomerId(rs.getString("CustomerID"));
+
+
+            // the FXML loader object to load the UI design
+            FXMLLoader loader = new FXMLLoader();
+            // specify the file location
+            loader.setLocation(getClass().getResource("CheckingAccountScreen.fxml"));
+
+            // the object representing the root node of the scene
+            Parent parent;
+            // try-catch for possible errors in reading the FXML file.
+            try {
+                // load the UI
+                parent = loader.load();
+
+                // set the scene
+                Scene scene = new Scene(parent);
+
+                CheckingAccountScreenController controller = loader.getController();
+                controller.initialize(rs.getString("CustomerID"));
+
+                // get the current window; i.e. the stage
+                Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+                // set the scene for the stage
+                stage.setScene(scene);
+                // show the stage
+                stage.show();
+            } catch (IOException e1) {
+                System.out.print(e1.getMessage());
             }
 
+            conn.close();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
