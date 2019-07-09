@@ -1,8 +1,11 @@
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import java.sql.*;
 import java.text.DecimalFormat;
 
@@ -59,7 +62,7 @@ public class CheckingAccountScreenController {
 
         DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
 
-        try{
+        try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
 
@@ -68,7 +71,7 @@ public class CheckingAccountScreenController {
             ResultSet rs = stmt.executeQuery(sql);
 
             //Display the content of the result set
-            while (rs.next()){
+            while (rs.next()) {
                 labelCustomerName.setText(rs.getString("Name"));
             }
 
@@ -77,7 +80,7 @@ public class CheckingAccountScreenController {
             rs = stmt.executeQuery(sql);
 
             //Display the content of the result set
-            while (rs.next()){
+            while (rs.next()) {
                 labelAccountNumber.setText(rs.getString("AccountNumber"));
                 double bal = Double.parseDouble(rs.getString("Balance"));
                 labelAccountBalance.setText(moneyFormat.format(bal));
@@ -85,10 +88,52 @@ public class CheckingAccountScreenController {
 
             conn.close();
 
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
     }
 
+    public void displayTransactions(ActionEvent e) {
+        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "password123";
+
+        try {
+
+        } catch (Exception ex) {
+
+        }
+    }
+
+    public void newTransaction(ActionEvent e) {
+        try {
+            // the FXML loader object to load the UI design
+            FXMLLoader loader = new FXMLLoader();
+            // specify the file location
+            loader.setLocation(getClass().getResource("NewTransactionScreen.fxml"));
+
+            // the object representing the root node of the scene
+            Parent parent;
+            // try-catch for possible errors in reading the FXML file.
+            try {
+                // load the UI
+                parent = loader.load();
+
+                // set the scene
+                Scene scene = new Scene(parent);
+
+                // get the current window; i.e. the stage
+                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                // set the scene for the stage
+                stage.setScene(scene);
+                // show the stage
+                stage.show();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

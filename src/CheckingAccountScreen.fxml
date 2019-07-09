@@ -86,7 +86,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="buttonNewTransaction" layoutX="1043.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #2196F3;" text="New Transaction" textFill="WHITE">
+            <Button fx:id="buttonNewTransaction" layoutX="1043.0" layoutY="25.0" mnemonicParsing="false" onAction="#newTransaction" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #2196F3;" text="New Transaction" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
