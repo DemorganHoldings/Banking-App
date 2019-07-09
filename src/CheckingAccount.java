@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class CheckingAccount {
     private String customerId;
@@ -6,9 +7,13 @@ public class CheckingAccount {
     private double accountBalance;
     public ArrayList<Transaction> transactions;
 
-    public CheckingAccount(double balance, String id) {
-
+    public CheckingAccount(String id){
+        this.accountBalance = 0;
+        generateAccountNumber();
+        this.customerId = id;
     }
+
+    //public CheckingAccount(double balance, String id) { }
 
     public String getCustomerId() {
         return customerId;
@@ -22,8 +27,12 @@ public class CheckingAccount {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
+    public void generateAccountNumber() {
+        Random rand = new Random();
+        int randomNumber = rand.nextInt(99999999) + 1;
+        String randomNumberString = String.format("%08d", randomNumber);
+
+        this.accountNumber = "CH-" + randomNumberString;
     }
 
     public double getAccountBalance() {

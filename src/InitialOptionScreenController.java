@@ -60,6 +60,8 @@ public class InitialOptionScreenController {
             Customer customer = new Customer(name, address, social, phone, email);
             customer.generateCustomerId();
 
+            CheckingAccount account = new CheckingAccount(customer.getCustomerId());
+
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
 
