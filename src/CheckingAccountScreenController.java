@@ -100,6 +100,14 @@ public class CheckingAccountScreenController {
         final String PASSWORD = "password123";
 
         try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+            Statement stmt = conn.createStatement(); //Create new statement object
+
+            String sql = "SELECT TransactionID, TransactionType, Description, DateTime FROM Transactions WHERE CustomerID = '" + customerID + "' && AccountNumber = '" + labelAccountNumber.getText() + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int transactionCount = 0;
+            }
 
         } catch (Exception ex) {
 
@@ -122,6 +130,9 @@ public class CheckingAccountScreenController {
 
                 // set the scene
                 Scene scene = new Scene(parent);
+
+                NewTransactionScreenController controller = loader.getController();
+                controller.initialize(customerID);
 
                 // get the current window; i.e. the stage
                 Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
