@@ -16,7 +16,7 @@
                   <Image url="@Logo_White.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonUserAccountCheckingAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="User Account" textFill="WHITE">
+            <Button fx:id="buttonUserAccountCheckingAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#userAccountButton" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="User Account" textFill="WHITE">
                <HBox.margin>
                   <Insets left="50.0" top="35.0" />
                </HBox.margin>

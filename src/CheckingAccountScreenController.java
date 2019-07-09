@@ -1,3 +1,4 @@
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -94,7 +95,7 @@ public class CheckingAccountScreenController {
 
     }
 
-    public void displayTransactions(ActionEvent e) {
+    public void displayTransactions() {
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
         final String PASSWORD = "password123";
@@ -103,10 +104,12 @@ public class CheckingAccountScreenController {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
 
-            String sql = "SELECT TransactionID, TransactionType, Description, DateTime FROM Transactions WHERE CustomerID = '" + customerID + "' && AccountNumber = '" + labelAccountNumber.getText() + "'";
+            String sql = "SELECT TransactionType, TransactionDescription, TransactionAmount, DateTime FROM Transactions WHERE CustomerID = '" + customerID + "' && AccountNumber = '" + labelAccountNumber.getText() + "'";
             ResultSet rs = stmt.executeQuery(sql);
+            Transaction transaction = new Transaction(customerID, rs.getString("TransactionType"), rs.getDouble("TransactionAmount"), rs.getDate("DateTime"));
+
             while (rs.next()) {
-                int transactionCount = 0;
+                System.out.println(transaction.getTransactionAmount());
             }
 
         } catch (Exception ex) {
@@ -147,4 +150,36 @@ public class CheckingAccountScreenController {
             System.out.println(ex.getMessage());
         }
     }
+
+    public void userAccountButton(ActionEvent e) {
+        try {
+            // the FXML loader object to load the UI design
+            FXMLLoader loader = new FXMLLoader();
+            // specify the file location
+            loader.setLocation(getClass().getResource("InitialOptionScreen.fxml"));
+
+            // the object representing the root node of the scene
+            Parent parent;
+            // try-catch for possible errors in reading the FXML file.
+            try {
+                // load the UI
+                parent = loader.load();
+
+                // set the scene
+                Scene scene = new Scene(parent);
+
+                // get the current window; i.e. the stage
+                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                // set the scene for the stage
+                stage.setScene(scene);
+                // show the stage
+                stage.show();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
 }
