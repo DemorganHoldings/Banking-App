@@ -1,4 +1,3 @@
-import java.util.UUID;
 import java.time.LocalDate;
 import java.util.Random;
 
@@ -19,7 +18,7 @@ public class Customer {
         Random rand = new Random();
         int randomNumber = rand.nextInt(999999) + 1;
         String randomNumberString = String.format("%06d", randomNumber);
-        this.customerId = "SP-" + currentDate + "-" + randomNumberString;
+        this.customerId = "SPC-" + currentDate + "-" + randomNumberString;
     }
 
     public String getCustomerId() {
