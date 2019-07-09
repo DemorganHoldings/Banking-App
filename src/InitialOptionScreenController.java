@@ -76,6 +76,15 @@ public class InitialOptionScreenController {
                     customer.getCustomerEmailAddress() + "')";
 
             stmt.executeUpdate(sql);
+
+            sql = "INSERT INTO CheckingAccount " +
+                    "(CustomerID, AccountNumber, Balance) " +
+                    "VALUES ('" +
+                    account.getCustomerId() + "', '" +
+                    account.getAccountNumber() + "', '" +
+                    account.getAccountBalance() + "')";
+
+            stmt.executeUpdate(sql);
             conn.close();
 
             // the FXML loader object to load the UI design
