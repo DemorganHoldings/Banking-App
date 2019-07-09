@@ -9,7 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #e91e63;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="82.0" prefWidth="1280.0" style="-fx-background-color: #e91e63;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="103.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -58,4 +58,57 @@
          </children>
       </HBox>
    </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="112.0" layoutY="24.0" text="Customer Name">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="376.0" layoutY="24.0" text="Account Number:">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelAccountNumber" layoutX="572.0" layoutY="24.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="768.0" layoutY="24.0" text="Balance:">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelAccountBalance" layoutX="867.0" layoutY="24.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonNewTransaction" layoutX="1043.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #2196F3;" text="New Transaction" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Pane layoutY="75.0" prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #e91e63;">
+               <children>
+                  <Label layoutX="113.0" layoutY="6.0" text="Transactions" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TableView layoutX="112.0" layoutY="118.0" prefHeight="484.0" prefWidth="1068.0">
+              <columns>
+                <TableColumn fx:id="columnTransactionDate" prefWidth="120.0" text="Date" />
+                <TableColumn fx:id="columnTransactionType" prefWidth="179.0" text="Transaction Type" />
+                  <TableColumn fx:id="columnTransactionDescription" prefWidth="583.0" text="Description" />
+                  <TableColumn fx:id="columnTransactionAmount" minWidth="0.0" prefWidth="185.0" text="Amount" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </center>
 </BorderPane>
