@@ -2,12 +2,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
-import java.io.IOException;
+
+import java.io.*;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 public class NewTransactionScreenController {
 
@@ -27,6 +30,9 @@ public class NewTransactionScreenController {
     private RadioButton radiobuttonWithdraw;
 
     @FXML
+    private RadioButton radiobuttonIsCash;
+
+    @FXML
     private RadioButton radiobuttonTransfer;
 
     @FXML
@@ -36,7 +42,13 @@ public class NewTransactionScreenController {
     private Button buttonReportsCheckingAccount;
 
     @FXML
+    private TextArea textboxTransactionDescription;
+
+    @FXML
     private Button buttonCancelTransaction;
+
+    @FXML
+    private Button buttonChooseCheckFile;
 
     @FXML
     private RadioButton radiobuttonDeposit;
@@ -54,12 +66,17 @@ public class NewTransactionScreenController {
     private Label labelAccountNumber;
 
     @FXML
+    private TextField textboxTransactionAmount;
+
+    @FXML
     private Label labelCustomerName;
 
     @FXML
-    private TextField textboxTransactionAmount;
+    private RadioButton radiobuttonIsCheck;
 
-    private String customerID;
+    private String customerID, filePath;
+
+    private String amount, description, transferAccountNumber;
 
     // method for initializing the window
     public void initialize(String id) {
@@ -99,6 +116,78 @@ public class NewTransactionScreenController {
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    public void availableOptions(){
+        if(radiobuttonWithdraw.isSelected()){
+            radiobuttonIsCash.setVisible(false);
+            radiobuttonIsCheck.setVisible(false);
+            buttonChooseCheckFile.setVisible(false);
+            textboxTransferToAccountNumber.setVisible(false);
+        }
+        else if(radiobuttonDeposit.isSelected()){
+            radiobuttonIsCash.setVisible(true);
+            radiobuttonIsCheck.setVisible(true);
+            buttonChooseCheckFile.setVisible(true);
+            textboxTransferToAccountNumber.setVisible(false);
+        } else if(radiobuttonTransfer.isVisible()){
+            radiobuttonIsCash.setVisible(false);
+            radiobuttonIsCheck.setVisible(false);
+            buttonChooseCheckFile.setVisible(false);
+            textboxTransferToAccountNumber.setVisible(true);
+        }
+    }
+
+    public void filePicker(ActionEvent event){
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(null);
+
+        if(selectedFile != null){
+            filePath = selectedFile.getAbsolutePath();
+        } else {
+            System.out.println("File is not Valid.");
+        }
+    }
+
+    public String readCheck() throws IOException{
+        String amount = "0";
+
+        // Open the file.
+        File file = new File(filePath);
+        Scanner inputFile = new Scanner(file);
+
+        //When the files reader finds the next line to read
+        while (inputFile.hasNext()){
+            // Read the next line.
+            amount = inputFile.nextLine();
+
+            System.out.println(amount);
+        }
+
+        // Close the file.
+        inputFile.close();
+
+        return amount;
+    }
+
+    public void save() throws IOException{
+        if(radiobuttonWithdraw.isSelected()){
+            amount = textboxTransactionAmount.getText();
+            description = textboxTransactionDescription.getText();
+        }
+        else if(radiobuttonDeposit.isSelected()){
+            if(radiobuttonIsCash.isSelected())
+                amount = textboxTransactionAmount.getText();
+            else if(radiobuttonIsCheck.isSelected())
+                amount = readCheck();
+
+            System.out.println(amount);
+            description = textboxTransactionDescription.getText();
+        } else if(radiobuttonTransfer.isVisible()){
+            amount = textboxTransactionAmount.getText();
+            description = textboxTransactionDescription.getText();
+            transferAccountNumber = textboxTransferToAccountNumber.getText();
         }
     }
 
