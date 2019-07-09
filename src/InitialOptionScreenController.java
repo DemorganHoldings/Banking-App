@@ -58,6 +58,7 @@ public class InitialOptionScreenController {
             email = textboxNewCustomerEmailAddress.getText();
             social = textboxNewCustomerSocial.getText();
             Customer customer = new Customer(name, address, social, phone, email);
+            customer.generateCustomerId();
 
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
