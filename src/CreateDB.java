@@ -4,6 +4,7 @@ public class CreateDB {
     public static void main(String[] args) {
         // Create a named constant for the URL.
         // NOTE: This value is specific for MySQL.
+
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/";
         final String DB_COFFEE_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
