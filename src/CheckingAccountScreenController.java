@@ -46,11 +46,12 @@ public class CheckingAccountScreenController {
     @FXML
     private TableColumn<?, ?> columnTransactionType;
 
-    private String customerID;
+    private String customerID = "SPC-2019-07-09-021464";
 
     public void initData(String id){
         customerID = id;
     }
+
     // method for initializing the window
     public void initialize() {
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
@@ -67,7 +68,8 @@ public class CheckingAccountScreenController {
 
             //Display the content of the result set
             while (rs.next()){
-                labelCustomerName.setText(rs.getString("Name"));
+                System.out.println(rs.getString("Name(*)"));
+                labelCustomerName.setText(rs.getString("Name(*)"));
             }
 
             conn.close();

@@ -102,8 +102,8 @@ public class InitialOptionScreenController {
                 // set the scene
                 Scene scene = new Scene(parent);
 
-                CheckingAccountScreenController controller = loader.getController();
-                controller.initData(account.getCustomerId());
+//                CheckingAccountScreenController controller = loader.getController();
+//                controller.initData(account.getCustomerId());
 
                 // get the current window; i.e. the stage
                 Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
