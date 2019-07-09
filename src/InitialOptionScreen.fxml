@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InitialOptionScreenController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #e91e63;" BorderPane.alignment="CENTER">
          <children>
@@ -53,9 +53,9 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="textboxNewCustomerName1" layoutX="40.0" layoutY="45.0" promptText="Name" />
+                  <TextField fx:id="textboxNewCustomerName" layoutX="40.0" layoutY="45.0" promptText="Name" />
                   <TextField fx:id="textboxNewCustomerPhoneNum" layoutX="40.0" layoutY="115.0" promptText="Phone Number" />
-                  <Button fx:id="buttonCreateNewCustomerAccount" layoutX="41.0" layoutY="218.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Create Account" textFill="WHITE">
+                  <Button fx:id="buttonCreateNewCustomerAccount" layoutX="41.0" layoutY="218.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Create Account" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
