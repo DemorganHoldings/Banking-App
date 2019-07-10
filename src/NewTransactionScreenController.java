@@ -248,7 +248,7 @@ public class NewTransactionScreenController {
 
     public void logout(ActionEvent e) {
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
-        controller.logOut(e);
+        controller.creditCardButton(e);
     }
 
 }
