@@ -56,26 +56,26 @@
                </font>
             </Label>
             <TextField fx:id="textboxCreditScore" layoutX="431.0" layoutY="189.0" prefHeight="25.0" prefWidth="249.0" promptText="Credit Score" />
-            <Label layoutX="431.0" layoutY="279.0" text="Existing Credit Card">
+            <Label fx:id="labelExistingCreditCard" layoutX="431.0" layoutY="279.0" text="Credit Card" visible="false">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="250.0" fitWidth="481.0" layoutX="431.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageviewCreditCard" fitHeight="250.0" fitWidth="481.0" layoutX="431.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@CreditCard.png" />
                </image></ImageView>
-            <Label fx:id="labelCreditCardNumber" layoutX="447.0" layoutY="486.0" text="4400 1234 5679 8951" textFill="#e91e63">
+            <Label fx:id="labelCreditCardNumber" layoutX="447.0" layoutY="486.0" text="4400 1234 5679 8951" textFill="#e91e63" visible="false">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="labelCreditCardExpiration" layoutX="472.0" layoutY="519.0" text="07/2022" textFill="#e91e63">
+            <Label fx:id="labelCreditCardExpiration" layoutX="472.0" layoutY="519.0" text="07/2022" textFill="#e91e63" visible="false">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="labelCreditCardCvvCode" layoutX="592.0" layoutY="519.0" text="123" textFill="#e91e63">
+            <Label fx:id="labelCreditCardCvvCode" layoutX="592.0" layoutY="519.0" text="123" textFill="#e91e63" visible="false">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
