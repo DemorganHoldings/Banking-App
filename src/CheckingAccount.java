@@ -65,21 +65,21 @@ public class CheckingAccount {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
 
-            String sql = "SELECT TransactionType, TransactionDescription, TransactionAmount, DateTime FROM Transactions WHERE CustomerID = '" + this.customerId + "' && AccountNumber = '" + this.accountNumber + "'";
+            String sql = "SELECT * FROM Transactions WHERE CustomerID = '" + this.customerId + "' && " +
+                    "AccountNumber = '" + this.accountNumber+ "'";
             ResultSet rs = stmt.executeQuery(sql);
+
             while (rs.next()) {
-                System.out.println("First");
-                System.out.println(this.customerId + " " + this.accountNumber + " " + rs.getString("TransactionType") + " " + rs.getDouble("TransactionAmount") + " " + rs.getString("DateTime"));
-                Transaction newTransaction = new Transaction(this.customerId, this.accountNumber, rs.getString("TransactionType"), rs.getString("TransactionDescription"), rs.getDouble("TransactionAmount"), "This is a date.");
-                System.out.println("Second");
+                Transaction newTransaction = new Transaction(this.customerId, this.accountNumber, rs.getString("TransactionType"),
+                        rs.getString("TransactionID"), rs.getString("TransactionDescription"),
+                        rs.getDouble("TransactionAmount"), rs.getString("DateTime"), rs.getString("TransferAccount"));
+
                 transactionList.add(newTransaction);
-                System.out.println("Sidhu String2" + newTransaction.getTransactionAmount());
             }
             this.transactions = transactionList;
-            System.out.println("Sidhu String 3" + this.transactions.get(0));
         }
         catch (Exception ex) {
-            System.out.println("Error" + ex.getMessage());
+            System.out.println("Error " + ex.getMessage());
         }
     }
 }

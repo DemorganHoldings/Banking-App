@@ -12,15 +12,19 @@ public class Transaction {
     private String transactionDateTime;
     private String transferAccount;
 
-    /*public Transaction (String custId, String acctNum, String tranType, double amount, String tranDateTime) {
-        generateTransactionId();
+    //Transaction constructor
+    public Transaction (String custId, String acctNum, String tranType, String tranID,  String tranDescription, double amount, String tranDateTime, String transferAcct) {
         this.customerId = custId;
         this.accountNumber = acctNum;
         this.transactionType = tranType;
+        this.transactionId = tranID;
+        this.transactionDescription = tranDescription;
         this.transactionAmount = amount;
         this.transactionDateTime = tranDateTime;
-    }*/
+        this.transferAccount = transferAcct;
+    }
 
+    //New Transaction constructor with no Transfer Account and generate Transaction ID
     public Transaction (String custId, String acctNum, String tranType, String tranDescription, double amount, String tranDateTime) {
         this.customerId = custId;
         this.accountNumber = acctNum;
@@ -32,6 +36,7 @@ public class Transaction {
         this.transferAccount = "";
     }
 
+    //New Transaction constructor with a Transfer Account and generate Transaction ID
     public Transaction (String custId, String acctNum, String tranType, String tranDescription, double amount, String tranDateTime, String transferAcct) {
         this.customerId = custId;
         this.accountNumber = acctNum;
