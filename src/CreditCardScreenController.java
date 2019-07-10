@@ -101,7 +101,7 @@ public class CreditCardScreenController {
         }
     }
 
-        public void applyForCreditCard() {
+    public void applyForCreditCard() {
             String creditScoreInput;
             String balanceInput;
             double accountBalance = 10000;
@@ -167,5 +167,25 @@ public class CreditCardScreenController {
             else if (creditScore > 0) {
                 labelCreditCardApplicationStatus.setText("Denied, Your credit score is too low.");
             }
-        }
     }
+
+    public void userSearch(ActionEvent e){
+        CheckingAccountScreenController controller = new CheckingAccountScreenController();
+        controller.userAccountButton(e);
+    }
+
+    public void checkingAccount(ActionEvent e){
+        CheckingAccountScreenController controller = new CheckingAccountScreenController();
+        controller.checkingAccountButton(e, customerID);
+    }
+
+    public void creditCard(ActionEvent e){
+        CheckingAccountScreenController controller = new CheckingAccountScreenController();
+        controller.creditCardButton(e);
+    }
+
+    public void logout(ActionEvent e) {
+        CheckingAccountScreenController controller = new CheckingAccountScreenController();
+        controller.creditCardButton(e);
+    }
+}
