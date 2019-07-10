@@ -202,6 +202,7 @@ public class NewTransactionScreenController {
             type = "Withdraw";
             transaction = new Transaction(customerID, accountNumber, type, description, amount, dateTime());
             transaction.withdraw();
+            transaction.updateDBWithTransaction();
         }
         else if(radiobuttonDeposit.isSelected()){
             if(radiobuttonIsCash.isSelected())
@@ -215,6 +216,7 @@ public class NewTransactionScreenController {
             type = "Deposit";
             transaction = new Transaction(customerID, accountNumber, type, description, amount, dateTime());
             transaction.deposit();
+            transaction.updateDBWithTransaction();
         } else if(radiobuttonTransfer.isSelected()){
             val = textboxTransactionAmount.getText();
             amount = Double.parseDouble(val);
@@ -223,6 +225,7 @@ public class NewTransactionScreenController {
             type = "Transfer";
             transaction = new Transaction(customerID, accountNumber, type, description, amount, dateTime(), transferAccountNumber);
             transaction.transfer();
+            transaction.updateDBWithTransaction();
         }
         goBack(e);
     }
