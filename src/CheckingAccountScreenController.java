@@ -1,11 +1,11 @@
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,10 +21,13 @@ public class CheckingAccountScreenController {
     private Button buttonLogoutCheckingAccount;
 
     @FXML
-    private TableColumn<?, ?> columnTransactionDescription;
+    private TableView<Transaction> tableView;
 
     @FXML
-    private TableColumn<?, ?> columnTransactionDate;
+    private TableColumn<Transaction, String> columnTransactionDescription;
+
+    @FXML
+    private TableColumn<Transaction, String>  columnTransactionDate;
 
     @FXML
     private Button buttonCreditCardCheckingAccount;
@@ -39,7 +42,7 @@ public class CheckingAccountScreenController {
     private Label labelAccountNumber;
 
     @FXML
-    private TableColumn<?, ?> columnTransactionAmount;
+    private TableColumn<Transaction, Double> columnTransactionAmount;
 
     @FXML
     private Button buttonCheckingAccountCheckingAccount;
@@ -51,7 +54,7 @@ public class CheckingAccountScreenController {
     private Label labelCustomerName;
 
     @FXML
-    private TableColumn<?, ?> columnTransactionType;
+    private TableColumn<Transaction, String> columnTransactionType;
 
     private String customerID, accountNum;
 
@@ -92,8 +95,7 @@ public class CheckingAccountScreenController {
             conn.close();
             CheckingAccount account = new CheckingAccount(customerID, accountNum);
 
-            account.getTransactions();
-            displayTransactions();
+            displayTransactions(account);
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -101,24 +103,21 @@ public class CheckingAccountScreenController {
 
     }
 
-    public void displayTransactions() {
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
-            Statement stmt = conn.createStatement(); //Create new statement object
+    public void displayTransactions(CheckingAccount account) {
+        account.getTransactions();
 
-            String sql = "SELECT TransactionType, TransactionDescription, TransactionAmount, DateTime FROM Transactions WHERE CustomerID = '" + customerID + "' && AccountNumber = '" + labelAccountNumber.getText() + "'";
-            ResultSet rs = stmt.executeQuery(sql);
-            Transaction transaction = new Transaction(customerID, accountNum, rs.getString("TransactionType"),
-                    rs.getString("TransactionID"), rs.getString("TransactionDescription"),
-                    rs.getDouble("TransactionAmount"), rs.getString("DateTime"), rs.getString("TransferAccount"));
+        //Set up the columns in the table
+        columnTransactionDate.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionDateTime"));
+        columnTransactionType.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionType"));
+        columnTransactionDescription.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionDescription"));
+        columnTransactionAmount.setCellValueFactory(new PropertyValueFactory<Transaction, Double>("transactionAmount"));
 
-            while (rs.next()) {
-                System.out.println(transaction.getTransactionAmount());
-            }
+        ObservableList<Transaction> TransactionList = FXCollections.observableArrayList(account.transactions);
 
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        tableView.setItems(TransactionList);
 
+        for(int i = 0; i < account.transactions.size(); i++){
+            System.out.println(account.transactions.get(i).getAccountNumber() + " " + account.transactions.get(i).getTransactionAmount());
         }
     }
 
