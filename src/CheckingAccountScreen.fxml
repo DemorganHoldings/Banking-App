@@ -16,7 +16,7 @@
                   <Image url="@Logo_White.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonUserAccountCheckingAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#userAccountButton" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="User Account" textFill="WHITE">
+            <Button fx:id="buttonUserAccountCheckingAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#userAccountButton" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="User Search" textFill="WHITE">
                <HBox.margin>
                   <Insets left="50.0" top="35.0" />
                </HBox.margin>
@@ -47,7 +47,7 @@
                   <Insets left="10.0" top="35.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="buttonLogoutCheckingAccount" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
+            <Button fx:id="buttonLogoutCheckingAccount" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" onAction="#logOut" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
                <font>
                   <Font name="Ikaros-Regular" size="18.0" />
                </font>

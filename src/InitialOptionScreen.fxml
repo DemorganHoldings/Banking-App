@@ -16,7 +16,7 @@
                   <Image url="@Logo_White.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonLogoutInitialOptionScreen" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
+            <Button fx:id="buttonLogoutInitialOptionScreen" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" onAction="#logOut" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
                <font>
                   <Font name="Ikaros-Regular" size="18.0" />
                </font>
