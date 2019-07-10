@@ -128,10 +128,12 @@ public class NewTransactionScreenController {
         }
         else if(radiobuttonDeposit.isSelected()){
             radiobuttonIsCash.setVisible(true);
+            radiobuttonIsCash.setSelected(true);
             radiobuttonIsCheck.setVisible(true);
-            buttonChooseCheckFile.setVisible(true);
+            buttonChooseCheckFile.setVisible(false);
             textboxTransferToAccountNumber.setVisible(false);
-        } else if(radiobuttonTransfer.isVisible()){
+        }
+        else if(radiobuttonTransfer.isVisible()){
             radiobuttonIsCash.setVisible(false);
             radiobuttonIsCheck.setVisible(false);
             buttonChooseCheckFile.setVisible(false);
@@ -139,7 +141,14 @@ public class NewTransactionScreenController {
         }
     }
 
-    public void filePicker(ActionEvent event){
+    public void fileBtnOption(){
+        if(radiobuttonIsCheck.isSelected())
+            buttonChooseCheckFile.setVisible(true);
+        else if(radiobuttonIsCash.isSelected())
+            buttonChooseCheckFile.setVisible(false);
+    }
+
+    public void filePicker(){
         FileChooser fc = new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
 
@@ -161,8 +170,6 @@ public class NewTransactionScreenController {
         while (inputFile.hasNext()){
             // Read the next line.
             amount = inputFile.nextLine();
-
-            System.out.println(amount);
         }
 
         // Close the file.
