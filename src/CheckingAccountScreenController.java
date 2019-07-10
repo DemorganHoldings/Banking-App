@@ -51,7 +51,7 @@ public class CheckingAccountScreenController {
     @FXML
     private TableColumn<?, ?> columnTransactionType;
 
-    private String customerID;
+    private String customerID, accountNum;
 
     // method for initializing the window
     public void initialize(String id) {
@@ -83,6 +83,7 @@ public class CheckingAccountScreenController {
             //Display the content of the result set
             while (rs.next()) {
                 labelAccountNumber.setText(rs.getString("AccountNumber"));
+                accountNum = rs.getString("AccountNumber");
                 double bal = Double.parseDouble(rs.getString("Balance"));
                 labelAccountBalance.setText(moneyFormat.format(bal));
             }
@@ -135,7 +136,7 @@ public class CheckingAccountScreenController {
                 Scene scene = new Scene(parent);
 
                 NewTransactionScreenController controller = loader.getController();
-                controller.initialize(customerID);
+                controller.initialize(customerID, accountNum);
 
                 // get the current window; i.e. the stage
                 Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
