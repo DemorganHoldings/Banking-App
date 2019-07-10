@@ -1,10 +1,20 @@
+import javax.xml.transform.Result;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Random;
+import java.sql.*;
+
 
 public class CreditCard {
+    final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+    final String USERNAME = "root";
+    final String PASSWORD = "password123";
+
     private String customerId;
     private String creditCardNumber;
     private String expirationDate;
@@ -70,6 +80,57 @@ public class CreditCard {
 
     public double getCreditLimit() {
         return creditLimit;
+    }
+
+    public boolean checkDBForExistingCreditCard() {
+        String custId = "";
+        boolean hasCreditCard = false;
+        try {
+
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+            Statement stmt = conn.createStatement(); //Create new statement object
+            String sql = "SELECT CustomerID from CreditCard";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                custId = rs.getString("CustomerID");
+            }
+
+            if (this.customerId.equals(custId)) {
+                hasCreditCard = true;
+            }
+
+            else {
+                hasCreditCard = false;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return hasCreditCard;
+    }
+
+    public void updateDBWithCreditCard(){
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+            Statement stmt = conn.createStatement(); //Create new statement object
+
+            String sql = "INSERT into CreditCard " +
+                    "(CustomerID, CreditCardNum, ExpirationDate, CVV, CreditLimit) VALUES ('" +
+                    this.customerId + "', '" +
+                    this.creditCardNumber + "', '" +
+                    this.expirationDate + "', '" +
+                    this.cvvCode + "', '" +
+                    this.creditLimit + "')";
+
+            stmt.executeUpdate(sql);
+
+            conn.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

@@ -104,38 +104,65 @@ public class CreditCardScreenController {
         public void applyForCreditCard() {
             String creditScoreInput;
             String balanceInput;
-            String creditCardNum;
-            String expDate;
-            String cvvCode;
-            double accountBalance = 0;
+            double accountBalance = 10000;
             double creditScore = 0;
             double creditLimit = 0;
+            boolean hasCreditCard = false;
 
             creditScoreInput = textboxCreditScore.getText();
             creditScore = Double.parseDouble(creditScoreInput);
 
-            balanceInput = labelAccountBalance.getText();
-            accountBalance = Double.parseDouble(balanceInput);
-
             if (creditScore > 800 && accountBalance > 10000) {
                 creditLimit = accountBalance * 0.20;
-                labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit +".");
                 CreditCard newCard = new CreditCard(customerID, creditLimit);
+                hasCreditCard = newCard.checkDBForExistingCreditCard();
+
+                if (hasCreditCard) {
+                    labelCreditCardApplicationStatus.setText("Customer already has a credit card.");
+                }
+                else {
+                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit + ".");
+                    newCard.updateDBWithCreditCard();
+                }
             }
             else if (creditScore > 740 && accountBalance > 8000) {
                 creditLimit = accountBalance * 0.15;
-                labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit +".");
                 CreditCard newCard = new CreditCard(customerID, creditLimit);
+                hasCreditCard = newCard.checkDBForExistingCreditCard();
+
+                if (hasCreditCard) {
+                    labelCreditCardApplicationStatus.setText("Customer already has a credit card.");
+                }
+                else {
+                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit + ".");
+                    newCard.updateDBWithCreditCard();
+                }
             }
             else if (creditScore > 670 && accountBalance > 6000) {
                 creditLimit = accountBalance * 0.10;
-                labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit +".");
                 CreditCard newCard = new CreditCard(customerID, creditLimit);
+                hasCreditCard = newCard.checkDBForExistingCreditCard();
+
+                if (hasCreditCard) {
+                    labelCreditCardApplicationStatus.setText("Customer already has a credit card.");
+                }
+                else {
+                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit + ".");
+                    newCard.updateDBWithCreditCard();
+                }
             }
             else if (creditScore > 580 && accountBalance > 4000) {
                 creditLimit = accountBalance * 0.05;
-                labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit +".");
                 CreditCard newCard = new CreditCard(customerID, creditLimit);
+                hasCreditCard = newCard.checkDBForExistingCreditCard();
+
+                if (hasCreditCard) {
+                    labelCreditCardApplicationStatus.setText("Customer already has a credit card.");
+                }
+                else {
+                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit + ".");
+                    newCard.updateDBWithCreditCard();
+                }
             }
             else if (creditScore > 0) {
                 labelCreditCardApplicationStatus.setText("Denied, Your credit score is too low.");
