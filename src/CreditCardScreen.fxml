@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreditCardScreenController">
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutY="65.0" prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #e91e63;">
+               <children>
+                  <Label layoutX="113.0" layoutY="6.0" text="Credit Card" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label fx:id="labelAccountBalance" layoutX="1028.0" layoutY="17.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="933.0" layoutY="17.0" text="Balance:">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelAccountNumber" layoutX="694.0" layoutY="17.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="490.0" layoutY="17.0" text="Account Number:">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelCustomerName" layoutX="118.0" layoutY="17.0" text="Customer Name">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonApplyForCreditCard" layoutX="693.0" layoutY="187.0" mnemonicParsing="false" onAction="#applyForCreditCard" prefHeight="14.0" prefWidth="136.0" style="-fx-background-color: #2196F3;" text="Apply" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="431.0" layoutY="151.0" text="New Credit Card">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textboxCreditScore" layoutX="431.0" layoutY="189.0" prefHeight="25.0" prefWidth="249.0" promptText="Credit Score" />
+            <Label layoutX="431.0" layoutY="279.0" text="Existing Credit Card">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="250.0" fitWidth="481.0" layoutX="431.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@CreditCard.png" />
+               </image></ImageView>
+            <Label fx:id="labelCreditCardNumber" layoutX="447.0" layoutY="486.0" text="4400 1234 5679 8951" textFill="#e91e63">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelCreditCardExpiration" layoutX="472.0" layoutY="519.0" text="07/2022" textFill="#e91e63">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelCreditCardCvvCode" layoutX="592.0" layoutY="519.0" text="123" textFill="#e91e63">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelCreditCardApplicationStatus" layoutX="433.0" layoutY="235.0" prefHeight="17.0" prefWidth="245.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </center>
+   <top>
+      <HBox prefHeight="82.0" prefWidth="1280.0" style="-fx-background-color: #e91e63;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="103.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Logo_White.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonUserAccountCheckingAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="User Account" textFill="WHITE">
+               <font>
+                  <Font name="Ikaros-Regular" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" top="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonCheckingAccountCheckingAccount" alignment="CENTER_RIGHT" layoutX="215.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Checking Account" textFill="WHITE">
+               <font>
+                  <Font name="Ikaros-Regular" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonCreditCardCheckingAccount" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Credit Card" textFill="WHITE">
+               <font>
+                  <Font name="Ikaros-Regular" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonReportsCheckingAccount" alignment="CENTER_RIGHT" layoutX="531.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Reports" textFill="WHITE">
+               <font>
+                  <Font name="Ikaros-Regular" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonLogoutCheckingAccount" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font name="Ikaros-Regular" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="425.0" top="35.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
