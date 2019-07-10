@@ -80,7 +80,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="labelCreditCardApplicationStatus" layoutX="433.0" layoutY="235.0" prefHeight="17.0" prefWidth="245.0">
+            <Label fx:id="labelCreditCardApplicationStatus" layoutX="433.0" layoutY="235.0" prefHeight="18.0" prefWidth="396.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
