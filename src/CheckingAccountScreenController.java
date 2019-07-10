@@ -216,4 +216,31 @@ public class CheckingAccountScreenController {
         }
     }
 
+    public void logOut(ActionEvent e){
+        // the FXML loader object to load the UI design
+        FXMLLoader loader = new FXMLLoader();
+        // specify the file location
+        loader.setLocation(getClass().getResource("Login.fxml"));
+
+        // the object representing the root node of the scene
+        Parent parent;
+        // try-catch for possible errors in reading the FXML file.
+        try {
+            // load the UI
+            parent = loader.load();
+
+            // set the scene
+            Scene scene = new Scene(parent);
+
+            // get the current window; i.e. the stage
+            Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+            // set the scene for the stage
+            stage.setScene(scene);
+            // show the stage
+            stage.show();
+        } catch (IOException e1) {
+            System.out.print(e1.getMessage());
+        }
+    }
+
 }
