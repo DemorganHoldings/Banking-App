@@ -29,7 +29,7 @@
             <RadioButton fx:id="radiobuttonDeposit" layoutX="599.0" layoutY="231.0" mnemonicParsing="false" onAction="#availableOptions" text="Deposit" toggleGroup="$groupTransactionType" />
             <RadioButton fx:id="radiobuttonTransfer" layoutX="704.0" layoutY="231.0" mnemonicParsing="false" onAction="#availableOptions" text="Transfer" toggleGroup="$groupTransactionType" />
             <TextField fx:id="textboxTransferToAccountNumber" layoutX="492.0" layoutY="420.0" prefHeight="25.0" prefWidth="276.0" promptText="Transfer To: Account Number" visible="false" />
-            <Button fx:id="buttonCancelTransaction" layoutX="684.0" layoutY="461.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #E0E0E0;" text="Cancel">
+            <Button fx:id="buttonCancelTransaction" layoutX="684.0" layoutY="461.0" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #E0E0E0;" text="Go Back">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

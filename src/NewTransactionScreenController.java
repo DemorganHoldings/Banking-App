@@ -74,13 +74,14 @@ public class NewTransactionScreenController {
     @FXML
     private RadioButton radiobuttonIsCheck;
 
-    private String customerID, filePath;
+    private String customerID, filePath, accountNumber, type;
 
     private String amount, description, transferAccountNumber;
 
     // method for initializing the window
-    public void initialize(String id) {
+    public void initialize(String id, String accountNum) {
         customerID = id;
+        accountNumber = accountNum;
 
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
@@ -182,6 +183,7 @@ public class NewTransactionScreenController {
         if(radiobuttonWithdraw.isSelected()){
             amount = textboxTransactionAmount.getText();
             description = textboxTransactionDescription.getText();
+            type = "Withdraw";
         }
         else if(radiobuttonDeposit.isSelected()){
             if(radiobuttonIsCash.isSelected())
@@ -191,14 +193,16 @@ public class NewTransactionScreenController {
 
             System.out.println(amount);
             description = textboxTransactionDescription.getText();
+            type = "Deposit";
         } else if(radiobuttonTransfer.isVisible()){
             amount = textboxTransactionAmount.getText();
             description = textboxTransactionDescription.getText();
             transferAccountNumber = textboxTransferToAccountNumber.getText();
+            type = "Transfer";
         }
     }
 
-    public void cancel(ActionEvent e){
+    public void goBack(ActionEvent e){
         // the FXML loader object to load the UI design
         FXMLLoader loader = new FXMLLoader();
         // specify the file location
