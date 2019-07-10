@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.*;
 import java.text.DecimalFormat;
 
@@ -181,6 +183,36 @@ public class CheckingAccountScreenController {
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    public void creditCardButton(ActionEvent e) {
+        // the FXML loader object to load the UI design
+        FXMLLoader loader = new FXMLLoader();
+        // specify the file location
+        loader.setLocation(getClass().getResource("CreditCardScreen.fxml"));
+
+        // the object representing the root node of the scene
+        Parent parent;
+        // try-catch for possible errors in reading the FXML file.
+        try {
+            // load the UI
+            parent = loader.load();
+
+            // set the scene
+            Scene scene = new Scene(parent);
+
+            CreditCardScreenController controller = loader.getController();
+            controller.initialize(customerID);
+
+            // get the current window; i.e. the stage
+            Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+            // set the scene for the stage
+            stage.setScene(scene);
+            // show the stage
+            stage.show();
+        } catch (IOException e1) {
+            System.out.print(e1.getMessage());
         }
     }
 

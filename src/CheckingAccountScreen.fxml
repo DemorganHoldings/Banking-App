@@ -31,7 +31,7 @@
                   <Insets left="10.0" top="35.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="buttonCreditCardCheckingAccount" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Credit Card" textFill="WHITE">
+            <Button fx:id="buttonCreditCardCheckingAccount" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="45.0" mnemonicParsing="false" onAction="#creditCardButton" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Credit Card" textFill="WHITE">
                <font>
                   <Font name="Ikaros-Regular" size="18.0" />
                </font>
@@ -100,7 +100,7 @@
                   </Label>
                </children>
             </Pane>
-            <TableView layoutX="112.0" layoutY="118.0" prefHeight="484.0" prefWidth="1068.0" fx:id="tableTransactionList">
+            <TableView fx:id="tableTransactionList" layoutX="112.0" layoutY="118.0" prefHeight="484.0" prefWidth="1068.0">
               <columns>
                 <TableColumn fx:id="columnTransactionDate" prefWidth="120.0" text="Date" />
                 <TableColumn fx:id="columnTransactionType" prefWidth="179.0" text="Transaction Type" />
