@@ -42,32 +42,7 @@ public class LoginController {
                 ResultSet rs = stmt.executeQuery(sql);
                 if (rs.next()) {
                     labelLoginErrorMessage.setText("Login Successful");
-
-
-                    // the FXML loader object to load the UI design
-                    FXMLLoader loader = new FXMLLoader();
-                    // specify the file location
-                    loader.setLocation(getClass().getResource("InitialOptionScreen.fxml"));
-
-                    // the object representing the root node of the scene
-                    Parent parent;
-                    // try-catch for possible errors in reading the FXML file.
-                    try {
-                        // load the UI
-                        parent = loader.load();
-
-                        // set the scene
-                        Scene scene = new Scene(parent);
-
-                        // get the current window; i.e. the stage
-                        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-                        // set the scene for the stage
-                        stage.setScene(scene);
-                        // show the stage
-                        stage.show();
-                    } catch (IOException e1) {
-                        System.out.print(e1.getMessage());
-                    }
+                    goToInitialOptionScreen(e);
                 }
                 else {
                     labelLoginErrorMessage.setText("Login Error, Check username or password");
@@ -77,5 +52,10 @@ public class LoginController {
         catch (Exception ex) {
             System.out.println(ex);
         }
+    }
+
+    public void goToInitialOptionScreen(ActionEvent e) {
+        CheckingAccountScreenController controller = new CheckingAccountScreenController();
+        controller.userAccountButton(e);
     }
 }

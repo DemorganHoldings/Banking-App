@@ -45,10 +45,11 @@ public class InitialOptionScreenController {
 
     }
 
+    private final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+    private final String USERNAME = "root";
+    private final String PASSWORD = "password123";
+
     public void createAccount(ActionEvent e){
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
         String name, address, phone, email, social;
 
         try {
@@ -96,9 +97,6 @@ public class InitialOptionScreenController {
     }
 
     public void searchAccount(ActionEvent e) {
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
         String name, social;
 
         Customer customer;

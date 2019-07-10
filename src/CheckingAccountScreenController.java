@@ -55,13 +55,13 @@ public class CheckingAccountScreenController {
 
     private String customerID, accountNum;
 
+    private final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+    private final String USERNAME = "root";
+    private final String PASSWORD = "password123";
+
     // method for initializing the window
     public void initialize(String id) {
         customerID = id;
-
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
 
         DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
 
@@ -91,7 +91,9 @@ public class CheckingAccountScreenController {
             }
             conn.close();
             CheckingAccount account = new CheckingAccount(customerID, accountNum);
+
             account.getTransactions();
+            displayTransactions();
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -99,27 +101,26 @@ public class CheckingAccountScreenController {
 
     }
 
-    /*public void displayTransactions() {
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
-
+    public void displayTransactions() {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
 
             String sql = "SELECT TransactionType, TransactionDescription, TransactionAmount, DateTime FROM Transactions WHERE CustomerID = '" + customerID + "' && AccountNumber = '" + labelAccountNumber.getText() + "'";
             ResultSet rs = stmt.executeQuery(sql);
-            Transaction transaction = new Transaction(customerID, rs.getString("TransactionType"), rs.getDouble("TransactionAmount"), rs.getDate("DateTime"));
+            Transaction transaction = new Transaction(customerID, accountNum, rs.getString("TransactionType"),
+                    rs.getString("TransactionID"), rs.getString("TransactionDescription"),
+                    rs.getDouble("TransactionAmount"), rs.getString("DateTime"), rs.getString("TransferAccount"));
 
             while (rs.next()) {
                 System.out.println(transaction.getTransactionAmount());
             }
 
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
 
         }
-    }*/
+    }
 
     public void newTransaction(ActionEvent e) {
         try {
