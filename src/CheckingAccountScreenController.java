@@ -87,8 +87,9 @@ public class CheckingAccountScreenController {
                 double bal = Double.parseDouble(rs.getString("Balance"));
                 labelAccountBalance.setText(moneyFormat.format(bal));
             }
-
             conn.close();
+            CheckingAccount account = new CheckingAccount(customerID, accountNum);
+            account.getTransactions();
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -96,7 +97,7 @@ public class CheckingAccountScreenController {
 
     }
 
-    public void displayTransactions() {
+    /*public void displayTransactions() {
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
         final String PASSWORD = "password123";
@@ -116,7 +117,7 @@ public class CheckingAccountScreenController {
         } catch (Exception ex) {
 
         }
-    }
+    }*/
 
     public void newTransaction(ActionEvent e) {
         try {

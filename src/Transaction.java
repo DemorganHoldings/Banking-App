@@ -8,10 +8,15 @@ public class Transaction {
     private String transactionId;
     private String transactionType;
     private double transactionAmount;
-    private Date transactionDateTime;
+    private String transactionDateTime;
 
-    public Transaction (String custId, String tranType, double amount, Date tranDateTime) {
-
+    public Transaction (String custId, String acctNum, String tranType, double amount, String tranDateTime) {
+        generateTransactionId();
+        this.customerId = custId;
+        this.accountNumber = acctNum;
+        this.transactionType = tranType;
+        this.transactionAmount = amount;
+        this.transactionDateTime = tranDateTime;
     }
 
     public String getCustomerId() {
@@ -58,11 +63,11 @@ public class Transaction {
         this.transactionAmount = transactionAmount;
     }
 
-    public Date getTransactionDateTime() {
+    public String getTransactionDateTime() {
         return transactionDateTime;
     }
 
-    public void setTransactionDateTime(Date transactionDateTime) {
+    public void setTransactionDateTime(String transactionDateTime) {
         this.transactionDateTime = transactionDateTime;
     }
 }
