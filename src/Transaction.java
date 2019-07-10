@@ -29,6 +29,7 @@ public class Transaction {
         this.transactionDescription = tranDescription;
         this.transactionAmount = amount;
         this.transactionDateTime = tranDateTime;
+        this.transferAccount = "";
     }
 
     public Transaction (String custId, String acctNum, String tranType, String tranDescription, double amount, String tranDateTime, String transferAcct) {
@@ -211,6 +212,36 @@ public class Transaction {
             sql = "UPDATE CheckingAccount SET Balance='" +  total + "' WHERE AccountNumber='" + this.transferAccount + "'" ;
 
             stmt.executeUpdate(sql);
+            conn.close();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void updateDBWithTransaction(){
+        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "password123";
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+            Statement stmt = conn.createStatement(); //Create new statement object
+
+             String sql = "INSERT into Transactions " +
+                        "(CustomerID, AccountNumber, TransactionID, TransactionType, TransactionDescription, TransactionAmount," +
+                        "DateTime, TransferAccount) VALUES ('" +
+                        this.customerId + "', '" +
+                        this.accountNumber + "', '" +
+                        this.transactionId + "', '" +
+                        this.transactionType + "', '" +
+                        this.transactionDescription + "', '" +
+                        this.transactionAmount + "', '" +
+                        this.transactionDateTime + "', '" +
+                        this.transferAccount + "')";
+
+            stmt.executeUpdate(sql);
+
             conn.close();
 
         } catch (Exception ex) {
