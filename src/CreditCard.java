@@ -133,4 +133,25 @@ public class CreditCard {
         }
     }
 
+    public void displayCreditCard(){
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+            Statement stmt = conn.createStatement(); //Create new statement object
+
+            String sql = "SELECT 'CreditCardNum', 'ExpirationDate', 'CVV` FROM 'CreditCard' WHERE 'CustomerID' = " + "'" + customerId + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                this.creditCardNumber = rs.getString("CreditCardNum");
+                this.expirationDate = rs.getString("ExpirationDate");
+                this.cvvCode = rs.getString("CVV");
+            }
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
 }

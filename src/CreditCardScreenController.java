@@ -3,6 +3,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.scene.image.ImageView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -54,6 +55,12 @@ public class CreditCardScreenController {
 
     @FXML
     private Label labelCreditCardApplicationStatus;
+
+    @FXML
+    private ImageView imageviewCreditCard;
+
+    @FXML
+    private Label labelExistingCreditCard;
 
     @FXML
     void e91e63(ActionEvent event) {
@@ -112,17 +119,37 @@ public class CreditCardScreenController {
             creditScoreInput = textboxCreditScore.getText();
             creditScore = Double.parseDouble(creditScoreInput);
 
+            DecimalFormat dollarFormatter = new DecimalFormat("###,##0.00");
+
             if (creditScore > 800 && accountBalance > 10000) {
                 creditLimit = accountBalance * 0.20;
                 CreditCard newCard = new CreditCard(customerID, creditLimit);
                 hasCreditCard = newCard.checkDBForExistingCreditCard();
 
                 if (hasCreditCard) {
-                    labelCreditCardApplicationStatus.setText("Customer already has a credit card.");
+                    labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
+                    labelCreditCardNumber.setVisible(true);
+                    labelCreditCardExpiration.setVisible(true);
+                    labelCreditCardCvvCode.setVisible(true);
+                    imageviewCreditCard.setVisible(true);
+                    labelExistingCreditCard.setVisible(true);
+                    newCard.displayCreditCard();
+                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
                 }
                 else {
-                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit + ".");
+                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
                     newCard.updateDBWithCreditCard();
+                    labelCreditCardNumber.setVisible(true);
+                    labelCreditCardExpiration.setVisible(true);
+                    labelCreditCardCvvCode.setVisible(true);
+                    imageviewCreditCard.setVisible(true);
+                    labelExistingCreditCard.setVisible(true);
+                    newCard.displayCreditCard();
+                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
                 }
             }
             else if (creditScore > 740 && accountBalance > 8000) {
@@ -131,11 +158,28 @@ public class CreditCardScreenController {
                 hasCreditCard = newCard.checkDBForExistingCreditCard();
 
                 if (hasCreditCard) {
-                    labelCreditCardApplicationStatus.setText("Customer already has a credit card.");
-                }
+                    labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
+                    newCard.displayCreditCard();
+                    labelCreditCardNumber.setVisible(true);
+                    labelCreditCardExpiration.setVisible(true);
+                    labelCreditCardCvvCode.setVisible(true);
+                    imageviewCreditCard.setVisible(true);
+                    labelExistingCreditCard.setVisible(true);
+                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                    labelCreditCardCvvCode.setText(newCard.getCvvCode());                }
                 else {
-                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit + ".");
+                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
                     newCard.updateDBWithCreditCard();
+                    labelCreditCardNumber.setVisible(true);
+                    labelCreditCardExpiration.setVisible(true);
+                    labelCreditCardCvvCode.setVisible(true);
+                    imageviewCreditCard.setVisible(true);
+                    labelExistingCreditCard.setVisible(true);
+                    newCard.displayCreditCard();
+                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
                 }
             }
             else if (creditScore > 670 && accountBalance > 6000) {
@@ -144,11 +188,28 @@ public class CreditCardScreenController {
                 hasCreditCard = newCard.checkDBForExistingCreditCard();
 
                 if (hasCreditCard) {
-                    labelCreditCardApplicationStatus.setText("Customer already has a credit card.");
-                }
+                    labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
+                    newCard.displayCreditCard();
+                    labelCreditCardNumber.setVisible(true);
+                    labelCreditCardExpiration.setVisible(true);
+                    labelCreditCardCvvCode.setVisible(true);
+                    imageviewCreditCard.setVisible(true);
+                    labelExistingCreditCard.setVisible(true);
+                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                    labelCreditCardCvvCode.setText(newCard.getCvvCode());                }
                 else {
-                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit + ".");
+                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
                     newCard.updateDBWithCreditCard();
+                    labelCreditCardNumber.setVisible(true);
+                    labelCreditCardExpiration.setVisible(true);
+                    labelCreditCardCvvCode.setVisible(true);
+                    imageviewCreditCard.setVisible(true);
+                    labelExistingCreditCard.setVisible(true);
+                    newCard.displayCreditCard();
+                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
                 }
             }
             else if (creditScore > 580 && accountBalance > 4000) {
@@ -157,11 +218,28 @@ public class CreditCardScreenController {
                 hasCreditCard = newCard.checkDBForExistingCreditCard();
 
                 if (hasCreditCard) {
-                    labelCreditCardApplicationStatus.setText("Customer already has a credit card.");
-                }
+                    labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
+                    newCard.displayCreditCard();
+                    labelCreditCardNumber.setVisible(true);
+                    labelCreditCardExpiration.setVisible(true);
+                    labelCreditCardCvvCode.setVisible(true);
+                    imageviewCreditCard.setVisible(true);
+                    labelExistingCreditCard.setVisible(true);
+                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                    labelCreditCardCvvCode.setText(newCard.getCvvCode());                }
                 else {
-                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + creditLimit + ".");
+                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
                     newCard.updateDBWithCreditCard();
+                    labelCreditCardNumber.setVisible(true);
+                    labelCreditCardExpiration.setVisible(true);
+                    labelCreditCardCvvCode.setVisible(true);
+                    imageviewCreditCard.setVisible(true);
+                    labelExistingCreditCard.setVisible(true);
+                    newCard.displayCreditCard();
+                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
                 }
             }
             else if (creditScore > 0) {
