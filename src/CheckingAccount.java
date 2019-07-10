@@ -1,4 +1,13 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.lang.reflect.Array;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Random;
 
 public class CheckingAccount {
@@ -13,7 +22,10 @@ public class CheckingAccount {
         this.customerId = id;
     }
 
-    //public CheckingAccount(double balance, String id) { }
+    public CheckingAccount(String id, String acctNum) {
+        this.customerId = id;
+        this.accountNumber = acctNum;
+    }
 
     public String getCustomerId() {
         return customerId;
@@ -43,11 +55,31 @@ public class CheckingAccount {
         this.accountBalance = accountBalance;
     }
 
-    public ArrayList<Transaction> getTransactions() {
-        return transactions;
-    }
+    public void getTransactions() {
+        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "password123";
 
-    public void setTransactions(ArrayList<Transaction> transactions) {
-        this.transactions = transactions;
+        try {
+            ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+            Statement stmt = conn.createStatement(); //Create new statement object
+
+            String sql = "SELECT TransactionType, TransactionDescription, TransactionAmount, DateTime FROM Transactions WHERE CustomerID = '" + this.customerId + "' && AccountNumber = '" + this.accountNumber + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println("First");
+                System.out.println(this.customerId + " " + this.accountNumber + " " + rs.getString("TransactionType") + " " + rs.getDouble("TransactionAmount") + " " + rs.getString("DateTime"));
+                Transaction newTransaction = new Transaction(this.customerId, this.accountNumber, rs.getString("TransactionType"), rs.getDouble("TransactionAmount"), "This is a date.");
+                System.out.println("Second");
+                transactionList.add(newTransaction);
+                System.out.println("Sidhu String2" + newTransaction.getTransactionAmount());
+            }
+            this.transactions = transactionList;
+            System.out.println("Sidhu String 3" + this.transactions.get(0));
+        }
+        catch (Exception ex) {
+            System.out.println("Error" + ex.getMessage());
+        }
     }
 }

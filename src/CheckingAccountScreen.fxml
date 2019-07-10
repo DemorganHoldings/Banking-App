@@ -100,7 +100,7 @@
                   </Label>
                </children>
             </Pane>
-            <TableView layoutX="112.0" layoutY="118.0" prefHeight="484.0" prefWidth="1068.0">
+            <TableView layoutX="112.0" layoutY="118.0" prefHeight="484.0" prefWidth="1068.0" fx:id="tableTransactionList">
               <columns>
                 <TableColumn fx:id="columnTransactionDate" prefWidth="120.0" text="Date" />
                 <TableColumn fx:id="columnTransactionType" prefWidth="179.0" text="Transaction Type" />
