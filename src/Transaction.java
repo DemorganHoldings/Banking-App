@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Random;
 
 public class Transaction {
@@ -7,16 +6,39 @@ public class Transaction {
     private String accountNumber;
     private String transactionId;
     private String transactionType;
+    private String transactionDescription;
     private double transactionAmount;
     private String transactionDateTime;
+    private String transferAccount;
 
-    public Transaction (String custId, String acctNum, String tranType, double amount, String tranDateTime) {
+    /*public Transaction (String custId, String acctNum, String tranType, double amount, String tranDateTime) {
         generateTransactionId();
         this.customerId = custId;
         this.accountNumber = acctNum;
         this.transactionType = tranType;
         this.transactionAmount = amount;
         this.transactionDateTime = tranDateTime;
+    }*/
+
+    public Transaction (String custId, String acctNum, String tranType, String tranDescription, double amount, String tranDateTime) {
+        this.customerId = custId;
+        this.accountNumber = acctNum;
+        generateTransactionId();
+        this.transactionType = tranType;
+        this.transactionDescription = tranDescription;
+        this.transactionAmount = amount;
+        this.transactionDateTime = tranDateTime;
+    }
+
+    public Transaction (String custId, String acctNum, String tranType, String tranDescription, double amount, String tranDateTime, String transferAcct) {
+        this.customerId = custId;
+        this.accountNumber = acctNum;
+        generateTransactionId();
+        this.transactionType = tranType;
+        this.transactionDescription = tranDescription;
+        this.transactionAmount = amount;
+        this.transactionDateTime = tranDateTime;
+        this.transferAccount = transferAcct;
     }
 
     public String getCustomerId() {
@@ -69,5 +91,13 @@ public class Transaction {
 
     public void setTransactionDateTime(String transactionDateTime) {
         this.transactionDateTime = transactionDateTime;
+    }
+
+    public String getTransactionDescription() {
+        return transactionDescription;
+    }
+
+    public void setTransactionDescription(String transactionDescription) {
+        this.transactionDescription = transactionDescription;
     }
 }

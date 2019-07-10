@@ -70,7 +70,7 @@ public class CheckingAccount {
             while (rs.next()) {
                 System.out.println("First");
                 System.out.println(this.customerId + " " + this.accountNumber + " " + rs.getString("TransactionType") + " " + rs.getDouble("TransactionAmount") + " " + rs.getString("DateTime"));
-                Transaction newTransaction = new Transaction(this.customerId, this.accountNumber, rs.getString("TransactionType"), rs.getDouble("TransactionAmount"), "This is a date.");
+                Transaction newTransaction = new Transaction(this.customerId, this.accountNumber, rs.getString("TransactionType"), rs.getString("TransactionDescription"), rs.getDouble("TransactionAmount"), "This is a date.");
                 System.out.println("Second");
                 transactionList.add(newTransaction);
                 System.out.println("Sidhu String2" + newTransaction.getTransactionAmount());
