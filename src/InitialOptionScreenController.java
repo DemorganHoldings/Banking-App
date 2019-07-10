@@ -87,33 +87,8 @@ public class InitialOptionScreenController {
             stmt.executeUpdate(sql);
             conn.close();
 
-            // the FXML loader object to load the UI design
-            FXMLLoader loader = new FXMLLoader();
-            // specify the file location
-            loader.setLocation(getClass().getResource("CheckingAccountScreen.fxml"));
-
-            // the object representing the root node of the scene
-            Parent parent;
-            // try-catch for possible errors in reading the FXML file.
-            try {
-                // load the UI
-                parent = loader.load();
-
-                // set the scene
-                Scene scene = new Scene(parent);
-
-                CheckingAccountScreenController controller = loader.getController();
-                controller.initialize(account.getCustomerId());
-
-                // get the current window; i.e. the stage
-                Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-                // set the scene for the stage
-                stage.setScene(scene);
-                // show the stage
-                stage.show();
-            } catch (IOException e1) {
-                System.out.print(e1.getMessage());
-            }
+            CheckingAccountScreenController controller = new CheckingAccountScreenController();
+            controller.checkingAccountButton(e, account.getCustomerId());
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -141,34 +116,8 @@ public class InitialOptionScreenController {
             customer = new Customer(rs.getString("Name"), rs.getString("Address"), rs.getString("Social"), rs.getString("PhoneNumber"), rs.getString("Email"));
             customer.setCustomerId(rs.getString("CustomerID"));
 
-
-            // the FXML loader object to load the UI design
-            FXMLLoader loader = new FXMLLoader();
-            // specify the file location
-            loader.setLocation(getClass().getResource("CheckingAccountScreen.fxml"));
-
-            // the object representing the root node of the scene
-            Parent parent;
-            // try-catch for possible errors in reading the FXML file.
-            try {
-                // load the UI
-                parent = loader.load();
-
-                // set the scene
-                Scene scene = new Scene(parent);
-
-                CheckingAccountScreenController controller = loader.getController();
-                controller.initialize(rs.getString("CustomerID"));
-
-                // get the current window; i.e. the stage
-                Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-                // set the scene for the stage
-                stage.setScene(scene);
-                // show the stage
-                stage.show();
-            } catch (IOException e1) {
-                System.out.print(e1.getMessage());
-            }
+            CheckingAccountScreenController controller = new CheckingAccountScreenController();
+            controller.checkingAccountButton(e, customer.getCustomerId());
 
             conn.close();
         } catch (Exception ex) {
@@ -176,31 +125,8 @@ public class InitialOptionScreenController {
         }
     }
 
-    public void logOut(ActionEvent e){
-        // the FXML loader object to load the UI design
-        FXMLLoader loader = new FXMLLoader();
-        // specify the file location
-        loader.setLocation(getClass().getResource("Login.fxml"));
-
-        // the object representing the root node of the scene
-        Parent parent;
-        // try-catch for possible errors in reading the FXML file.
-        try {
-            // load the UI
-            parent = loader.load();
-
-            // set the scene
-            Scene scene = new Scene(parent);
-
-            // get the current window; i.e. the stage
-            Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-            // set the scene for the stage
-            stage.setScene(scene);
-            // show the stage
-            stage.show();
-        } catch (IOException e1) {
-            System.out.print(e1.getMessage());
-        }
+    public void logOut(ActionEvent e) {
+        CheckingAccountScreenController controller = new CheckingAccountScreenController();
+        controller.logOut(e);
     }
-
 }

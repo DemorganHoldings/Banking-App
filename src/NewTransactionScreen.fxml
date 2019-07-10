@@ -29,7 +29,7 @@
             <RadioButton fx:id="radiobuttonDeposit" layoutX="599.0" layoutY="231.0" mnemonicParsing="false" onAction="#availableOptions" text="Deposit" toggleGroup="$groupTransactionType" />
             <RadioButton fx:id="radiobuttonTransfer" layoutX="704.0" layoutY="231.0" mnemonicParsing="false" onAction="#availableOptions" text="Transfer" toggleGroup="$groupTransactionType" />
             <TextField fx:id="textboxTransferToAccountNumber" layoutX="492.0" layoutY="420.0" prefHeight="25.0" prefWidth="276.0" promptText="Transfer To: Account Number" visible="false" />
-            <Button fx:id="buttonCancelTransaction" layoutX="684.0" layoutY="461.0" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #E0E0E0;" text="Go Back">
+            <Button fx:id="buttonCancelTransaction" layoutX="684.0" layoutY="461.0" mnemonicParsing="false" onAction="#checkingAccount" prefHeight="30.0" prefWidth="83.0" style="-fx-background-color: #E0E0E0;" text="Go Back">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -82,7 +82,7 @@
                   <Image url="@Logo_White.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonUserAccountCheckingAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="User Account" textFill="WHITE">
+            <Button fx:id="buttonUserAccountCheckingAccount" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#userSearch" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="User Search" textFill="WHITE">
                <font>
                   <Font name="Ikaros-Regular" size="18.0" />
                </font>
@@ -90,7 +90,7 @@
                   <Insets left="50.0" top="35.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="buttonCheckingAccountCheckingAccount" alignment="CENTER_RIGHT" layoutX="215.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Checking Account" textFill="WHITE">
+            <Button fx:id="buttonCheckingAccountCheckingAccount" alignment="CENTER_RIGHT" layoutX="215.0" layoutY="45.0" mnemonicParsing="false" onAction="#checkingAccount" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Checking Account" textFill="WHITE">
                <font>
                   <Font name="Ikaros-Regular" size="18.0" />
                </font>
@@ -98,7 +98,7 @@
                   <Insets left="10.0" top="35.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="buttonCreditCardCheckingAccount" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Credit Card" textFill="WHITE">
+            <Button fx:id="buttonCreditCardCheckingAccount" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="45.0" mnemonicParsing="false" onAction="#creditCard" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Credit Card" textFill="WHITE">
                <font>
                   <Font name="Ikaros-Regular" size="18.0" />
                </font>
@@ -114,7 +114,7 @@
                   <Insets left="10.0" top="35.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="buttonLogoutCheckingAccount" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
+            <Button fx:id="buttonLogoutCheckingAccount" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" onAction="#logout" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
                <font>
                   <Font name="Ikaros-Regular" size="18.0" />
                </font>
