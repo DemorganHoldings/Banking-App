@@ -11,6 +11,8 @@ import java.io.*;
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.util.Scanner;
+import java.util.Date;
+import java.text.*;
 
 public class NewTransactionScreenController {
 
@@ -76,7 +78,9 @@ public class NewTransactionScreenController {
 
     private String customerID, filePath, accountNumber, type;
 
-    private String amount, description, transferAccountNumber;
+    private String val, description, transferAccountNumber;
+
+    private double amount;
 
     // method for initializing the window
     public void initialize(String id, String accountNum) {
@@ -134,7 +138,7 @@ public class NewTransactionScreenController {
             buttonChooseCheckFile.setVisible(false);
             textboxTransferToAccountNumber.setVisible(false);
         }
-        else if(radiobuttonTransfer.isVisible()){
+        else if(radiobuttonTransfer.isSelected()){
             radiobuttonIsCash.setVisible(false);
             radiobuttonIsCheck.setVisible(false);
             buttonChooseCheckFile.setVisible(false);
@@ -149,7 +153,7 @@ public class NewTransactionScreenController {
             buttonChooseCheckFile.setVisible(false);
     }
 
-    public void filePicker(){
+    public void filePicker(ActionEvent e){
         FileChooser fc = new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
 
@@ -179,27 +183,48 @@ public class NewTransactionScreenController {
         return amount;
     }
 
-    public void save() throws IOException{
+    public String dateTime() {
+        String date;
+        Date today = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("MM-dd-yyyy 'at' hh:mm:ss");
+
+        date = ft.format(today);
+        return date;
+    }
+
+    public void save(ActionEvent e) throws IOException{
+        Transaction transaction;
+
         if(radiobuttonWithdraw.isSelected()){
-            amount = textboxTransactionAmount.getText();
+            val = textboxTransactionAmount.getText();
+            amount = Double.parseDouble(val);
             description = textboxTransactionDescription.getText();
             type = "Withdraw";
+            transaction = new Transaction(customerID, accountNumber, type, description, amount, dateTime());
+            transaction.withdraw();
         }
         else if(radiobuttonDeposit.isSelected()){
             if(radiobuttonIsCash.isSelected())
-                amount = textboxTransactionAmount.getText();
+                val = textboxTransactionAmount.getText();
             else if(radiobuttonIsCheck.isSelected())
-                amount = readCheck();
+                val = readCheck();
 
-            System.out.println(amount);
+            System.out.println(val);
+            amount = Double.parseDouble(val);
             description = textboxTransactionDescription.getText();
             type = "Deposit";
-        } else if(radiobuttonTransfer.isVisible()){
-            amount = textboxTransactionAmount.getText();
+            transaction = new Transaction(customerID, accountNumber, type, description, amount, dateTime());
+            transaction.deposit();
+        } else if(radiobuttonTransfer.isSelected()){
+            val = textboxTransactionAmount.getText();
+            amount = Double.parseDouble(val);
             description = textboxTransactionDescription.getText();
             transferAccountNumber = textboxTransferToAccountNumber.getText();
             type = "Transfer";
+            transaction = new Transaction(customerID, accountNumber, type, description, amount, dateTime(), transferAccountNumber);
+            transaction.transfer();
         }
+        goBack(e);
     }
 
     public void goBack(ActionEvent e){
