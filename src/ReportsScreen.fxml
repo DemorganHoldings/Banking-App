@@ -61,9 +61,9 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="labelStatementMessage" alignment="CENTER" layoutX="457.0" layoutY="241.0" prefHeight="17.0" prefWidth="248.0">
+            <Label fx:id="labelStatementMessage" alignment="CENTER" layoutX="433.0" layoutY="241.0">
                <font>
-                  <Font name="Apple Braille" size="16.0" />
+                  <Font size="14.0" />
                </font></Label>
          </children>
       </Pane>
