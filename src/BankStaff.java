@@ -5,16 +5,17 @@ public class BankStaff {
     private String staffName;
     private String staffUsername;
     private String staffPassword;
-    private boolean isManager;
+    private int isManager;
 
-    public BankStaff(String name, String username, String password, boolean manager) {
+    public BankStaff(String name, String username, String password, int manager) {
         this.staffName = name;
         this.staffUsername = username;
         this.staffPassword = password;
         this.isManager = manager;
+        generateStaffId();
     }
 
-    public BankStaff(String id, String name, String username, String password, boolean manager) {
+    public BankStaff(String id, String name, String username, String password, int manager) {
         this.staffId = id;
         this.staffName = name;
         this.staffUsername = username;
@@ -57,11 +58,11 @@ public class BankStaff {
         this.staffPassword = staffPassword;
     }
 
-    public boolean isManager() {
+    public int getIsManager() {
         return isManager;
     }
 
-    public void setManager(boolean manager) {
+    public void setIsManager(int manager) {
         isManager = manager;
     }
 }

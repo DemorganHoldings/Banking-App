@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BankStaff">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManageStaffScreenController">
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -21,12 +21,12 @@
                   <TextField fx:id="textboxNewStaffName" layoutX="40.0" layoutY="55.0" prefHeight="25.0" prefWidth="166.0" promptText="Name" />
                   <TextField fx:id="textboxNewStaffUsername" layoutX="41.0" layoutY="90.0" prefHeight="25.0" prefWidth="164.0" promptText="Username" />
                   <TextField fx:id="textboxNewStaffPassword" layoutX="40.0" layoutY="125.0" prefHeight="25.0" prefWidth="164.0" promptText="Password" />
-                  <Button fx:id="buttonCreateNewStaffAccount" layoutX="41.0" layoutY="197.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Create Account" textFill="WHITE">
+                  <Button fx:id="buttonCreateNewStaffAccount" layoutX="41.0" layoutY="197.0" mnemonicParsing="false" onAction="#addStaffButton" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Create Account" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <CheckBox fx:id="checkboxStaffIsManager" layoutX="41.0" layoutY="163.0" mnemonicParsing="false" text="Is Manager" />
+                  <CheckBox fx:id="checkboxAddStaffIsManager" layoutX="41.0" layoutY="163.0" mnemonicParsing="false" text="Is Manager" />
                </children>
             </Pane>
             <Separator layoutX="637.0" layoutY="90.0" orientation="VERTICAL" prefHeight="528.0" prefWidth="0.0" style="-fx-background-color: #000000;" />
@@ -94,7 +94,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Pane layoutX="996.0" layoutY="243.0" prefHeight="161.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
+            <Pane layoutX="993.0" layoutY="154.0" prefHeight="161.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
                <children>
                   <Label layoutX="54.0" layoutY="14.0" text="Remove Staff" textFill="#e91e63">
                      <font>
@@ -102,11 +102,27 @@
                      </font>
                   </Label>
                   <TextField fx:id="textboxRemoveStaffId" layoutX="40.0" layoutY="55.0" prefHeight="25.0" prefWidth="166.0" promptText="Staff ID" />
-                  <Button fx:id="buttonRemoveStaffAccount" layoutX="39.0" layoutY="105.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Remove Account" textFill="WHITE">
+                  <Button fx:id="buttonRemoveStaffAccount" layoutX="39.0" layoutY="105.0" mnemonicParsing="false" onAction="#removeStaffButton" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Remove Account" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="993.0" layoutY="331.0" prefHeight="161.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
+               <children>
+                  <Label layoutX="57.0" layoutY="14.0" text="Modify Staff" textFill="#e91e63">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textboxModifyStaffId" layoutX="40.0" layoutY="55.0" prefHeight="25.0" prefWidth="166.0" promptText="Staff ID" />
+                  <Button fx:id="buttonModifyStaffAccount" layoutX="39.0" layoutY="115.0" mnemonicParsing="false" onAction="#modifyStaffButton" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Modify Account" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <CheckBox fx:id="checkboxModifyStaffIsManager" layoutX="43.0" layoutY="87.0" mnemonicParsing="false" text="Is Manager" />
                </children>
             </Pane>
          </children>
