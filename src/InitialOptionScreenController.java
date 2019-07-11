@@ -5,6 +5,8 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import sun.rmi.runtime.Log;
+
 import java.io.IOException;
 import java.sql.*;
 
@@ -20,6 +22,9 @@ public class InitialOptionScreenController {
     private Button buttonSearchExistingCustomer;
 
     @FXML
+    private Label warningLabel;
+
+    @FXML
     private TextField textboxExistingSocialSecurity;
 
     @FXML
@@ -27,6 +32,9 @@ public class InitialOptionScreenController {
 
     @FXML
     private TextField textboxNewCustomerName;
+
+    @FXML
+    private Button buttonManageTellers;
 
     @FXML
     private TextField textboxExistingCustomerName;
@@ -104,22 +112,57 @@ public class InitialOptionScreenController {
             name = textboxExistingCustomerName.getText();
             social = textboxExistingSocialSecurity.getText();
 
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
-            Statement stmt = conn.createStatement(); //Create new statement object
+            if (name.isEmpty() || social.isEmpty()) {
+                warningLabel.setText("Check Name or Social");
+            }
+            else {
+                Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+                Statement stmt = conn.createStatement(); //Create new statement object
 
-            String sql = "SELECT CustomerID, Name, Address, Social, PhoneNumber, Email FROM Customer WHERE Name = '" + name + "' && Social = '" + social + "'";
-            ResultSet rs = stmt.executeQuery(sql);
-            rs.next();
+                String sql = "SELECT * FROM Customer WHERE Name = '" + name + "' && Social = '" + social + "'";
+                ResultSet rs = stmt.executeQuery(sql);
 
-            customer = new Customer(rs.getString("Name"), rs.getString("Address"), rs.getString("Social"), rs.getString("PhoneNumber"), rs.getString("Email"));
-            customer.setCustomerId(rs.getString("CustomerID"));
+                if(rs.next()) {
+                    customer = new Customer(rs.getString("Name"), rs.getString("Address"), rs.getString("Social"), rs.getString("PhoneNumber"), rs.getString("Email"));
+                    customer.setCustomerId(rs.getString("CustomerID"));
 
-            CheckingAccountScreenController controller = new CheckingAccountScreenController();
-            controller.checkingAccountButton(e, customer.getCustomerId());
+                    CheckingAccountScreenController controller = new CheckingAccountScreenController();
+                    controller.checkingAccountButton(e, customer.getCustomerId());
+                } else {
+                    warningLabel.setText("Login Error, Check Name or Social");
+                }
 
-            conn.close();
+                conn.close();
+            }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    public void manageTellers(ActionEvent e){
+        // the FXML loader object to load the UI design
+        FXMLLoader loader = new FXMLLoader();
+        // specify the file location
+        loader.setLocation(getClass().getResource("ManageTellersScreen.fxml"));
+
+        // the object representing the root node of the scene
+        Parent parent;
+        // try-catch for possible errors in reading the FXML file.
+        try {
+            // load the UI
+            parent = loader.load();
+
+            // set the scene
+            Scene scene = new Scene(parent);
+
+            // get the current window; i.e. the stage
+            Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+            // set the scene for the stage
+            stage.setScene(scene);
+            // show the stage
+            stage.show();
+        } catch (IOException e1) {
+            System.out.print(e1.getMessage());
         }
     }
 
