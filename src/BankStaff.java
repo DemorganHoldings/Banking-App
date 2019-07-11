@@ -8,7 +8,18 @@ public class BankStaff {
     private boolean isManager;
 
     public BankStaff(String name, String username, String password, boolean manager) {
+        this.staffName = name;
+        this.staffUsername = username;
+        this.staffPassword = password;
+        this.isManager = manager;
+    }
 
+    public BankStaff(String id, String name, String username, String password, boolean manager) {
+        this.staffId = id;
+        this.staffName = name;
+        this.staffUsername = username;
+        this.staffPassword = password;
+        this.isManager = manager;
     }
 
     public void generateStaffId() {
