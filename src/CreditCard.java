@@ -84,7 +84,6 @@ public class CreditCard extends Customer{
     public boolean checkDBForExistingCreditCard() {
         String custId = "";
         boolean hasCreditCard = false;
-        System.out.println("Test");
         try {
 
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -93,14 +92,12 @@ public class CreditCard extends Customer{
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                System.out.println("Test1");
                 custId = rs.getString("CustomerID");
                 if (this.customerId.equals(custId)) {
                     this.creditCardNumber = rs.getString("CreditCardNum");
                     this.expirationDate = rs.getString("ExpirationDate");
                     this.cvvCode = Integer.toString(rs.getInt("CVV"));
                     this.creditLimit = rs.getDouble("CreditLimit");
-                    System.out.println("Test2");
                     hasCreditCard = true;
                 }
                 else {
