@@ -73,6 +73,7 @@ public class CreditCardScreenController {
     }
 
     private String customerID, accountNum;
+    double bal;
     DecimalFormat dollarFormatter = new DecimalFormat("#,##0.00");
 
     public void initialize(String id) {
@@ -105,7 +106,7 @@ public class CreditCardScreenController {
             while (rs.next()) {
                 labelAccountNumber.setText(rs.getString("AccountNumber"));
                 accountNum = rs.getString("AccountNumber");
-                double bal = Double.parseDouble(rs.getString("Balance"));
+                bal = Double.parseDouble(rs.getString("Balance"));
                 labelAccountBalance.setText(moneyFormat.format(bal));
             }
 
@@ -138,7 +139,7 @@ public class CreditCardScreenController {
     public void applyForCreditCard() {
             String creditScoreInput;
             String balanceInput;
-            double accountBalance = 10000;
+            double accountBalance = bal;
             double creditScore = 0;
             double creditLimit = 0;
             boolean hasCreditCard = false;
