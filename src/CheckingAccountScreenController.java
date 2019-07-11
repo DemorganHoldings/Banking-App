@@ -21,13 +21,7 @@ public class CheckingAccountScreenController {
     private Button buttonLogoutCheckingAccount;
 
     @FXML
-    private TableView<Transaction> tableView;
-
-    @FXML
-    private TableColumn<Transaction, String> columnTransactionDescription;
-
-    @FXML
-    private TableColumn<Transaction, String>  columnTransactionDate;
+    private Label labelTransactionDescription;
 
     @FXML
     private Button buttonCreditCardCheckingAccount;
@@ -36,25 +30,28 @@ public class CheckingAccountScreenController {
     private Label labelAccountBalance;
 
     @FXML
-    private Button buttonUserAccountCheckingAccount;
-
-    @FXML
-    private Label labelAccountNumber;
-
-    @FXML
-    private TableColumn<Transaction, Double> columnTransactionAmount;
-
-    @FXML
     private Button buttonCheckingAccountCheckingAccount;
 
     @FXML
     private Button buttonReportsCheckingAccount;
 
     @FXML
+    private Label labelTransactionDateTime;
+
+    @FXML
+    private Label labelTransactionType;
+
+    @FXML
+    private Button buttonUserAccountCheckingAccount;
+
+    @FXML
+    private Label labelAccountNumber;
+
+    @FXML
     private Label labelCustomerName;
 
     @FXML
-    private TableColumn<Transaction, String> columnTransactionType;
+    private Label labelTransactionAmount;
 
     private String customerID, accountNum;
 
@@ -62,11 +59,12 @@ public class CheckingAccountScreenController {
     private final String USERNAME = "root";
     private final String PASSWORD = "password123";
 
+    DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
+
+
     // method for initializing the window
     public void initialize(String id) {
         customerID = id;
-
-        System.out.println(customerID);
 
         DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
 
@@ -108,18 +106,11 @@ public class CheckingAccountScreenController {
     public void displayTransactions(CheckingAccount account) {
         account.getTransactions();
 
-        //Set up the columns in the table
-        columnTransactionDate.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionDateTime"));
-        columnTransactionType.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionType"));
-        columnTransactionDescription.setCellValueFactory(new PropertyValueFactory<Transaction, String>("transactionDescription"));
-        columnTransactionAmount.setCellValueFactory(new PropertyValueFactory<Transaction, Double>("transactionAmount"));
-
-        ObservableList<Transaction> TransactionList = FXCollections.observableArrayList(account.transactions);
-
-        tableView.setItems(TransactionList);
-
         for(int i = 0; i < account.transactions.size(); i++){
-            System.out.println(account.transactions.get(i).getAccountNumber() + " " + account.transactions.get(i).getTransactionAmount());
+            labelTransactionDateTime.setText(labelTransactionDateTime.getText() + "\n" + account.transactions.get(i).getTransactionDateTime());
+            labelTransactionType.setText(labelTransactionType.getText() + "\n" + account.transactions.get(i).getTransactionType());
+            labelTransactionDescription.setText(labelTransactionDescription.getText() + "\n" + account.transactions.get(i).getTransactionDescription());
+            labelTransactionAmount.setText(labelTransactionAmount.getText() + "\n" + moneyFormat.format(account.transactions.get(i).getTransactionAmount()));
         }
     }
 
