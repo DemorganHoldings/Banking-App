@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BankStaff">
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutX="686.0" layoutY="199.0" prefHeight="248.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
+               <children>
+                  <Label layoutX="72.0" layoutY="14.0" text="Add Staff" textFill="#e91e63">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textboxNewStaffName" layoutX="40.0" layoutY="55.0" prefHeight="25.0" prefWidth="166.0" promptText="Name" />
+                  <TextField fx:id="textboxNewStaffUsername" layoutX="41.0" layoutY="90.0" prefHeight="25.0" prefWidth="164.0" promptText="Username" />
+                  <TextField fx:id="textboxNewStaffPassword" layoutX="40.0" layoutY="125.0" prefHeight="25.0" prefWidth="164.0" promptText="Password" />
+                  <Button fx:id="buttonCreateNewStaffAccount" layoutX="41.0" layoutY="197.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Create Account" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <CheckBox fx:id="checkboxStaffIsManager" layoutX="41.0" layoutY="163.0" mnemonicParsing="false" text="Is Manager" />
+               </children>
+            </Pane>
+            <Separator layoutX="637.0" layoutY="90.0" orientation="VERTICAL" prefHeight="528.0" prefWidth="0.0" style="-fx-background-color: #000000;" />
+            <Pane layoutY="47.0" prefHeight="43.0" prefWidth="1280.0" style="-fx-background-color: #e91e63;">
+               <children>
+                  <Label layoutX="18.0" layoutY="6.0" text="Bank Staff List" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="672.0" layoutY="6.0" text="Add or Delete Staff" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="20.0" layoutY="97.0" prefHeight="25.0" prefWidth="83.0" text="Staff ID">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="106.0" layoutY="97.0" prefHeight="25.0" prefWidth="140.0" text="Name">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="249.0" layoutY="97.0" prefHeight="25.0" prefWidth="124.0" text="Username">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="389.0" layoutY="97.0" prefHeight="25.0" prefWidth="124.0" text="Password">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="527.0" layoutY="97.0" prefHeight="25.0" prefWidth="94.0" text="Is Manager">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelStaffManager" layoutX="527.0" layoutY="117.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelStaffPassword" layoutX="389.0" layoutY="117.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelStaffUsername" layoutX="249.0" layoutY="117.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelStaffName" layoutX="106.0" layoutY="117.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelStaffId" layoutX="20.0" layoutY="117.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Pane layoutX="996.0" layoutY="243.0" prefHeight="161.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
+               <children>
+                  <Label layoutX="54.0" layoutY="14.0" text="Remove Staff" textFill="#e91e63">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textboxRemoveStaffId" layoutX="40.0" layoutY="55.0" prefHeight="25.0" prefWidth="166.0" promptText="Staff ID" />
+                  <Button fx:id="buttonRemoveStaffAccount" layoutX="39.0" layoutY="105.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="27.0" prefWidth="166.0" style="-fx-background-color: #2196F3;" text="Remove Account" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #e91e63;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="103.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Logo_White.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonUserSearch" mnemonicParsing="false" prefHeight="39.0" prefWidth="123.0" style="-fx-background-color: #e91e63;" text="User Search" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" top="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonLogout" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="800.0" top="35.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
