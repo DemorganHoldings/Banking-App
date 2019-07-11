@@ -80,10 +80,16 @@ public class ManageStaffScreenController {
 
     public ArrayList<BankStaff> allStaff;
 
+    /**
+     * Initialize the manage staff screen and controller
+     */
     public void initialize() {
         getStaffFromDb();
     }
 
+    /**
+     * Listener for add staff button
+     */
     public void addStaffButton() {
         String name, username, password;
         int manager;
@@ -134,6 +140,10 @@ public class ManageStaffScreenController {
         }
     }
 
+
+    /**
+     * Listener for remove staff button
+     */
     public void removeStaffButton() {
         String staffId = textboxRemoveStaffId.getText();
 
@@ -159,6 +169,9 @@ public class ManageStaffScreenController {
         }
     }
 
+    /**
+     * Listener for modify staff button
+     */
     public void modifyStaffButton() {
         if (textboxModifyStaffId.getText().isEmpty()) {
             labelModifyStaffStatus.setText("Please enter Staff ID");
@@ -193,7 +206,10 @@ public class ManageStaffScreenController {
         }
     }
 
-        public void getStaffFromDb(){
+    /**
+     * Get staff from database to display
+     */
+    public void getStaffFromDb(){
         try {
             ArrayList<BankStaff> bankStaffList = new ArrayList<BankStaff>();
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -233,11 +249,19 @@ public class ManageStaffScreenController {
         }
     }
 
+    /**
+     * User search button listener
+     * @param e action event object
+     */
     public void userSearch(ActionEvent e){
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.userAccountButton(e);
     }
 
+    /**
+     * Logout button listener
+     * @param e action event object
+     */
     public void logout(ActionEvent e) {
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.logOut(e);

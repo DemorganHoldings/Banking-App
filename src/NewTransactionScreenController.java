@@ -82,16 +82,20 @@ public class NewTransactionScreenController {
 
     private double amount;
 
-    // method for initializing the window
+    final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+    final String USERNAME = "root";
+    final String PASSWORD = "password123";
+
+    DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
+
+    /**
+     * Initialize the new transaction screen and controller
+     * @param id pass in customer id
+     * @param accountNum pass in the account number
+     */
     public void initialize(String id, String accountNum) {
         customerID = id;
         accountNumber = accountNum;
-
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
-
-        DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -124,6 +128,9 @@ public class NewTransactionScreenController {
         }
     }
 
+    /**
+     * displays options and fields based on the transaction type that is selected by the user
+     */
     public void availableOptions(){
         if(radiobuttonWithdraw.isSelected()){
             radiobuttonIsCash.setVisible(false);
@@ -146,6 +153,9 @@ public class NewTransactionScreenController {
         }
     }
 
+    /**
+     * Checks if deposit transaction is cash or check and displays the choose file button if check is selected
+     */
     public void fileBtnOption(){
         if(radiobuttonIsCheck.isSelected())
             buttonChooseCheckFile.setVisible(true);
@@ -153,6 +163,10 @@ public class NewTransactionScreenController {
             buttonChooseCheckFile.setVisible(false);
     }
 
+    /**
+     * File picker to get file path for check files
+     * @param e action event object
+     */
     public void filePicker(ActionEvent e){
         FileChooser fc = new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
@@ -164,6 +178,11 @@ public class NewTransactionScreenController {
         }
     }
 
+    /**
+     * Reads in the check file that was selected
+     * @return check amount which was read from the file
+     * @throws IOException throws IOException for reading from file
+     */
     public String readCheck() throws IOException{
         String amount = "0";
 
@@ -186,6 +205,10 @@ public class NewTransactionScreenController {
         return amount;
     }
 
+    /**
+     * Gets current date and time for transaction log
+     * @return returns the date and time for the transaction log
+     */
     public String dateTime() {
         String date;
         Date today = new Date();
@@ -195,6 +218,11 @@ public class NewTransactionScreenController {
         return date;
     }
 
+    /**
+     * Listener for the save transaction button
+     * @param e action event object
+     * @throws IOException throws IOException
+     */
     public void save(ActionEvent e) throws IOException{
         Transaction transaction;
 
@@ -240,26 +268,46 @@ public class NewTransactionScreenController {
         checkingAccount(e);
     }
 
+    /**
+     * Listener for user search button
+     * @param e action event object
+     */
     public void userSearch(ActionEvent e){
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.userAccountButton(e);
     }
 
+    /**
+     * Listener for checking account button
+     * @param e action event object
+     */
     public void checkingAccount(ActionEvent e){
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.checkingAccountButton(e, customerID);
     }
 
+    /**
+     * Listener for credit card button
+     * @param e action event object
+     */
     public void creditCard(ActionEvent e){
         CreditCardScreenController controller = new CreditCardScreenController();
         controller.creditCardButton(e, customerID);
     }
 
+    /**
+     * Listener for report button
+     * @param e action event object
+     */
     public void report(ActionEvent e){
         ReportsScreenController controller = new ReportsScreenController();
         controller.reportsButton(e, customerID);
     }
 
+    /**
+     * Listener for logout button
+     * @param e action event object
+     */
     public void logout(ActionEvent e) {
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.logOut(e);

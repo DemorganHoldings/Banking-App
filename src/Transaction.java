@@ -2,6 +2,9 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.Random;
 
+/**
+ * Transaction class
+ */
 public class Transaction {
     private String customerId;
     private String accountNumber;
@@ -12,7 +15,21 @@ public class Transaction {
     private String transactionDateTime;
     private String transferAccount;
 
-    //Transaction constructor
+    final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+    final String USERNAME = "root";
+    final String PASSWORD = "password123";
+
+    /**
+     * Transaction Constructor
+     * @param custId customer id
+     * @param acctNum account number
+     * @param tranType transaction type
+     * @param tranID transaction id
+     * @param tranDescription transaction description
+     * @param amount transaction amount
+     * @param tranDateTime transaction date and time
+     * @param transferAcct transfer account number
+     */
     public Transaction (String custId, String acctNum, String tranType, String tranID,  String tranDescription, double amount, String tranDateTime, String transferAcct) {
         this.customerId = custId;
         this.accountNumber = acctNum;
@@ -24,7 +41,15 @@ public class Transaction {
         this.transferAccount = transferAcct;
     }
 
-    //New Transaction constructor with no Transfer Account and generate Transaction ID
+    /**
+     * New Transaction constructor with no Transfer Account and generate Transaction ID
+     * @param custId customer id
+     * @param acctNum account number
+     * @param tranType transaction type
+     * @param tranDescription transaction description
+     * @param amount transaction amount
+     * @param tranDateTime transaction date and time
+     */
     public Transaction (String custId, String acctNum, String tranType, String tranDescription, double amount, String tranDateTime) {
         this.customerId = custId;
         this.accountNumber = acctNum;
@@ -36,7 +61,16 @@ public class Transaction {
         this.transferAccount = "";
     }
 
-    //New Transaction constructor with a Transfer Account and generate Transaction ID
+    /**
+     * New Transaction constructor with a Transfer Account and generate Transaction ID
+     * @param custId customer id
+     * @param acctNum account number
+     * @param tranType transaction type
+     * @param tranDescription transaction description
+     * @param amount transaction amount
+     * @param tranDateTime transaction date and time
+     * @param transferAcct transfer account number
+     */
     public Transaction (String custId, String acctNum, String tranType, String tranDescription, double amount, String tranDateTime, String transferAcct) {
         this.customerId = custId;
         this.accountNumber = acctNum;
@@ -48,6 +82,7 @@ public class Transaction {
         this.transferAccount = transferAcct;
     }
 
+    //Getters and Setters
     public String getCustomerId() {
         return customerId;
     }
@@ -68,6 +103,9 @@ public class Transaction {
         return transactionId;
     }
 
+    /**
+     * Generate transaction id
+     */
     public void generateTransactionId() {
         LocalDate currentDate = LocalDate.now(); // Create a date object
         Random rand = new Random();
@@ -76,6 +114,7 @@ public class Transaction {
         this.transactionId = this.transactionType.charAt(0) + "-" + currentDate + "-" + randomNumberString;
     }
 
+    //Getters and Setters
     public String getTransactionType() {
         return transactionType;
     }
@@ -112,12 +151,11 @@ public class Transaction {
         return transferAccount;
     }
 
+    /**
+     * Withdraw transaction method
+     */
     public void withdraw(){
         double initialBalance = 0, total = 0;
-
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -148,12 +186,11 @@ public class Transaction {
         }
     }
 
+    /**
+     * Deposit transaction method
+     */
     public void deposit(){
         double initialBalance = 0, total = 0;
-
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -181,12 +218,11 @@ public class Transaction {
     }
 
 
+    /**
+     * Transfer transaction method
+     */
     public void transfer(){
         double initialBalance = 0, total = 0;
-
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -235,10 +271,10 @@ public class Transaction {
         }
     }
 
+    /**
+     * update database with new transaction
+     */
     public void updateDBWithTransaction(){
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection

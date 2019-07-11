@@ -55,14 +55,18 @@ public class ReportsScreenController {
 
     private String customerID, accountNum;
 
+    final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+    final String USERNAME = "root";
+    final String PASSWORD = "password123";
+
     DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
 
+    /**
+     * Initialize the reporting screen and controller
+     * @param id pass in customer id and get customer name and account balance from database to display
+     */
     public void initialize(String id) {
         customerID = id;
-
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "password123";
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -94,6 +98,9 @@ public class ReportsScreenController {
         }
     }
 
+    /**
+     * Called when file is to be picked for statement output
+     */
     public void pathPicker(){
         Stage stage = new Stage();
         DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -109,6 +116,11 @@ public class ReportsScreenController {
         }
     }
 
+    /**
+     * Generate statement based on current customer account information
+     * File is save to user specified path /report.txt
+     * @param e action event object
+     */
     public void generateStatement(ActionEvent e) {
 
         CheckingAccount account = new CheckingAccount(customerID, accountNum);
@@ -147,21 +159,37 @@ public class ReportsScreenController {
         }
     }
 
+    /**
+     * User search button listener
+     * @param e action event object
+     */
     public void userSearch(ActionEvent e){
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.userAccountButton(e);
     }
 
+    /**
+     * Checking account button listener
+     * @param e action event object
+     */
     public void checkingAccount(ActionEvent e){
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.checkingAccountButton(e, customerID);
     }
 
+    /**
+     * Credit card button listener
+     * @param e action event object
+     */
     public void creditCard(ActionEvent e){
         CreditCardScreenController controller = new CreditCardScreenController();
         controller.creditCardButton(e, customerID);
     }
 
+    /**
+     * Reports button listener
+     * @param e action event object
+     */
     public void reportsButton(ActionEvent e, String id) {
         // the FXML loader object to load the UI design
         FXMLLoader loader = new FXMLLoader();
@@ -192,6 +220,10 @@ public class ReportsScreenController {
         }
     }
 
+    /**
+     * Logout button listener
+     * @param e action event object
+     */
     public void logout(ActionEvent e) {
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.logOut(e);
