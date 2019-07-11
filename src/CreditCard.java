@@ -88,7 +88,7 @@ public class CreditCard extends Customer{
 
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement OBJECT
-            String sql = "SELECT * from CreditCard";
+            String sql = "SELECT * from CreditCard WHERE CustomerID = " + "'" + this.getCustomerId() + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
@@ -140,7 +140,7 @@ public class CreditCard extends Customer{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
 
-            String sql = "SELECT CreditCardNum, ExpirationDate, CVV FROM CreditCard WHERE CustomerID = '" + customerId + "'";
+            String sql = "SELECT * FROM CreditCard WHERE CustomerID = '" + customerId + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
