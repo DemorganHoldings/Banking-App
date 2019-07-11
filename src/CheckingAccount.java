@@ -1,32 +1,37 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.lang.reflect.Array;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.Random;
 
 public class CheckingAccount extends Customer {
+
+    //fields
     private String customerId;
     private String accountNumber;
     private double accountBalance;
     public ArrayList<Transaction> transactions;
 
+    /**
+     * Constructor for new Checking Account
+     * @param id Customer ID
+     */
     public CheckingAccount(String id){
         this.accountBalance = 0;
         generateAccountNumber();
         this.customerId = id;
     }
 
+    /**
+     * Constructor for Existing Checking Account
+     * @param id Customer ID
+     * @param acctNum Account Number
+     */
     public CheckingAccount(String id, String acctNum) {
         this.customerId = id;
         this.accountNumber = acctNum;
     }
 
+
+    //Getters and Setters
     public String getCustomerId() {
         return customerId;
     }
@@ -39,6 +44,9 @@ public class CheckingAccount extends Customer {
         return accountNumber;
     }
 
+    /**
+     * Generates a random Account Number and assigns it
+     */
     public void generateAccountNumber() {
         Random rand = new Random();
         int randomNumber = rand.nextInt(99999999) + 1;
@@ -55,6 +63,10 @@ public class CheckingAccount extends Customer {
         this.accountBalance = accountBalance;
     }
 
+
+    /**
+     * Gets transactions from database
+     */
     public void getTransactions() {
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";

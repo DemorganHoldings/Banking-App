@@ -1,3 +1,8 @@
+/**
+ * Authors: Prabjot Singh and Satinder Dhaliwal
+ * Purpose: A banking application for a bank to use for customer operations
+ */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -19,7 +24,7 @@ public class BankingApp extends Application {
         //set the scene for the stage
         PrimaryStage.setScene(scene);
         //set the title for the stage
-        PrimaryStage.setTitle("SP Demorgan Financial");
+        PrimaryStage.setTitle("SP & Demorgan Financial");
         //show the stage
         PrimaryStage.show();
     }
