@@ -78,8 +78,6 @@ public class CreditCardScreenController {
     public void initialize(String id) {
         customerID = id;
 
-        System.out.println(customerID);
-
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
         final String PASSWORD = "password123";
@@ -111,7 +109,8 @@ public class CreditCardScreenController {
                 labelAccountBalance.setText(moneyFormat.format(bal));
             }
 
-            CreditCard newCard = new CreditCard(customerID, 10000);
+            CreditCard newCard = new CreditCard(customerID, 0);
+
             if(newCard.checkDBForExistingCreditCard()){
                 labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
                 labelCreditCardNumber.setVisible(true);
