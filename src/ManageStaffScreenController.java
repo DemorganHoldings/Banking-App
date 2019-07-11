@@ -36,6 +36,12 @@ public class ManageStaffScreenController {
     private Label labelStaffUsername;
 
     @FXML
+    private TextField textboxModifyStaffId;
+
+    @FXML
+    private Label labelModifyStaffStatus;
+
+    @FXML
     private Button buttonRemoveStaffAccount;
 
     @FXML
@@ -45,7 +51,7 @@ public class ManageStaffScreenController {
     private TextField textboxNewStaffUsername;
 
     @FXML
-    private TextField textboxModifyStaffId;
+    private Label labelAddStaffStatus;
 
     @FXML
     private Label labelStaffId;
@@ -55,6 +61,9 @@ public class ManageStaffScreenController {
 
     @FXML
     private TextField textboxNewStaffName;
+
+    @FXML
+    private Label labelRemoveStaffStatus;
 
     @FXML
     private TextField textboxNewStaffPassword;
@@ -79,91 +88,112 @@ public class ManageStaffScreenController {
         String name, username, password;
         int manager;
 
-        name = textboxNewStaffName.getText();
-        username = textboxNewStaffUsername.getText();
-        password = textboxNewStaffPassword.getText();
-        if (checkboxAddStaffIsManager.isSelected()) {
-            manager = 1;
+        if (textboxNewStaffName.getText().isEmpty() || textboxNewStaffUsername.getText().isEmpty() || textboxNewStaffPassword.getText().isEmpty()) {
+            labelAddStaffStatus.setText("Please enter all three fields.");
         }
         else {
-            manager = 0;
-        }
+            name = textboxNewStaffName.getText();
+            username = textboxNewStaffUsername.getText();
+            password = textboxNewStaffPassword.getText();
 
-        BankStaff newStaff = new BankStaff(name, username, password, manager);
+            if (checkboxAddStaffIsManager.isSelected()) {
+                manager = 1;
+            } else {
+                manager = 0;
+            }
 
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
-            Statement stmt = conn.createStatement(); //Create new statement object
+            BankStaff newStaff = new BankStaff(name, username, password, manager);
 
-            String sql = "INSERT INTO BankStaff " +
-                    "(StaffID, Name, Username, Password, isManager) " +
-                    "VALUES ('" +
-                    newStaff.getStaffId() + "', '" +
-                    newStaff.getStaffName() + "', '" +
-                    newStaff.getStaffUsername() + "', '" +
-                    newStaff.getStaffPassword() + "', '" +
-                    newStaff.getIsManager() + "')";
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+                Statement stmt = conn.createStatement(); //Create new statement object
 
-            stmt.executeUpdate(sql);
-            conn.close();
-            getStaffFromDb();
+                String sql = "INSERT INTO BankStaff " +
+                        "(StaffID, Name, Username, Password, isManager) " +
+                        "VALUES ('" +
+                        newStaff.getStaffId() + "', '" +
+                        newStaff.getStaffName() + "', '" +
+                        newStaff.getStaffUsername() + "', '" +
+                        newStaff.getStaffPassword() + "', '" +
+                        newStaff.getIsManager() + "')";
 
-            textboxNewStaffName.setText("");
-            textboxNewStaffUsername.setText("");
-            textboxNewStaffPassword.setText("");
-            checkboxAddStaffIsManager.setSelected(false);
-        }
-        catch (Exception ex) {
-            System.out.println(ex.getMessage());
+                stmt.executeUpdate(sql);
+
+                labelAddStaffStatus.setText("New Staff Account Has Been Created.");
+
+                conn.close();
+                getStaffFromDb();
+
+                textboxNewStaffName.setText("");
+                textboxNewStaffUsername.setText("");
+                textboxNewStaffPassword.setText("");
+                checkboxAddStaffIsManager.setSelected(false);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
     public void removeStaffButton() {
         String staffId = textboxRemoveStaffId.getText();
 
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
-            Statement stmt = conn.createStatement(); //Create new statement object
-            String sql = "DELETE FROM BankStaff WHERE StaffId = '" + staffId + "'";
-
-            stmt.executeUpdate(sql);
-            conn.close();
-            getStaffFromDb();
-            textboxRemoveStaffId.setText("");
+        if (textboxRemoveStaffId.getText().isEmpty()) {
+            labelRemoveStaffStatus.setText("Please enter Staff ID");
         }
-        catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        else {
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+                Statement stmt = conn.createStatement(); //Create new statement object
+                String sql = "DELETE FROM BankStaff WHERE StaffId = '" + staffId + "'";
+
+                stmt.executeUpdate(sql);
+
+                labelRemoveStaffStatus.setText("Staff Account Has Been Removed.");
+
+                conn.close();
+                getStaffFromDb();
+                textboxRemoveStaffId.setText("");
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
     public void modifyStaffButton() {
-        String staffId = textboxModifyStaffId.getText();
-        int isManager = 0;
-
-        if (checkboxModifyStaffIsManager.isSelected()) {
-            isManager = 1;
+        if (textboxModifyStaffId.getText().isEmpty()) {
+            labelModifyStaffStatus.setText("Please enter Staff ID");
         }
         else {
-            isManager = 0;
-        }
 
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
-            Statement stmt = conn.createStatement(); //Create new statement object
-            String sql = "UPDATE BankStaff SET isManager = '" + isManager + "' WHERE StaffID = '" + staffId + "'";
+            String staffId = textboxModifyStaffId.getText();
+            int isManager = 0;
 
-            stmt.executeUpdate(sql);
-            conn.close();
-            getStaffFromDb();
-            textboxModifyStaffId.setText("");
-            checkboxModifyStaffIsManager.setSelected(false);
-        }
-        catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            if (checkboxModifyStaffIsManager.isSelected()) {
+                isManager = 1;
+            } else {
+                isManager = 0;
+            }
+
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
+                Statement stmt = conn.createStatement(); //Create new statement object
+                String sql = "UPDATE BankStaff SET isManager = '" + isManager + "' WHERE StaffID = '" + staffId + "'";
+
+                stmt.executeUpdate(sql);
+
+                labelModifyStaffStatus.setText("Staff Account Has Been Modified.");
+
+                conn.close();
+                getStaffFromDb();
+                textboxModifyStaffId.setText("");
+                checkboxModifyStaffIsManager.setSelected(false);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
-        public void getStaffFromDb() {
+        public void getStaffFromDb(){
         try {
             ArrayList<BankStaff> bankStaffList = new ArrayList<BankStaff>();
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection

@@ -11,7 +11,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="686.0" layoutY="199.0" prefHeight="248.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
+            <Pane layoutX="686.0" layoutY="199.0" prefHeight="266.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
                <children>
                   <Label layoutX="72.0" layoutY="14.0" text="Add Staff" textFill="#e91e63">
                      <font>
@@ -27,6 +27,7 @@
                      </font>
                   </Button>
                   <CheckBox fx:id="checkboxAddStaffIsManager" layoutX="41.0" layoutY="163.0" mnemonicParsing="false" text="Is Manager" />
+                  <Label fx:id="labelAddStaffStatus" alignment="CENTER" layoutX="22.0" layoutY="236.0" prefHeight="17.0" prefWidth="204.0" />
                </children>
             </Pane>
             <Separator layoutX="637.0" layoutY="90.0" orientation="VERTICAL" prefHeight="528.0" prefWidth="0.0" style="-fx-background-color: #000000;" />
@@ -94,7 +95,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Pane layoutX="993.0" layoutY="154.0" prefHeight="161.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
+            <Pane layoutX="993.0" layoutY="154.0" prefHeight="173.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
                <children>
                   <Label layoutX="54.0" layoutY="14.0" text="Remove Staff" textFill="#e91e63">
                      <font>
@@ -107,9 +108,10 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
+                  <Label fx:id="labelRemoveStaffStatus" alignment="CENTER" layoutX="17.0" layoutY="142.0" prefHeight="17.0" prefWidth="212.0" />
                </children>
             </Pane>
-            <Pane layoutX="993.0" layoutY="331.0" prefHeight="161.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
+            <Pane layoutX="993.0" layoutY="340.0" prefHeight="183.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
                <children>
                   <Label layoutX="57.0" layoutY="14.0" text="Modify Staff" textFill="#e91e63">
                      <font>
@@ -123,6 +125,7 @@
                      </font>
                   </Button>
                   <CheckBox fx:id="checkboxModifyStaffIsManager" layoutX="43.0" layoutY="87.0" mnemonicParsing="false" text="Is Manager" />
+                  <Label fx:id="labelModifyStaffStatus" alignment="CENTER" layoutX="17.0" layoutY="152.0" prefHeight="17.0" prefWidth="212.0" />
                </children>
             </Pane>
          </children>
