@@ -203,6 +203,8 @@ public class NewTransactionScreenController {
 
         if(radiobuttonWithdraw.isSelected()){
             val = textboxTransactionAmount.getText();
+            val = val.replaceAll("," ,"");
+            val = val.replaceAll("\\$", "");
             amount = Double.parseDouble(val);
             description = textboxTransactionDescription.getText();
             type = "Withdraw";
@@ -216,7 +218,9 @@ public class NewTransactionScreenController {
             else if(radiobuttonIsCheck.isSelected())
                 val = readCheck();
 
-            System.out.println(val);
+            val = val.replaceAll("," ,"");
+            val = val.replaceAll("\\$", "");
+
             amount = Double.parseDouble(val);
             description = textboxTransactionDescription.getText();
             type = "Deposit";
@@ -225,6 +229,8 @@ public class NewTransactionScreenController {
             transaction.updateDBWithTransaction();
         } else if(radiobuttonTransfer.isSelected()){
             val = textboxTransactionAmount.getText();
+            val = val.replaceAll("," ,"");
+            val = val.replaceAll("\\$", "");
             amount = Double.parseDouble(val);
             description = textboxTransactionDescription.getText();
             transferAccountNumber = textboxTransferToAccountNumber.getText();

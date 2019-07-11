@@ -132,6 +132,10 @@ public class Transaction {
                 initialBalance= rs.getDouble("Balance");
             }
 
+            if (this.transactionAmount > initialBalance){
+                this.transactionAmount = initialBalance;
+            }
+
             total = initialBalance - this.transactionAmount;
 
             sql = "UPDATE CheckingAccount SET Balance='" +  total + "' WHERE CustomerID= '" + this.customerId + "' && AccountNumber='" + this.accountNumber + "'" ;
@@ -198,7 +202,10 @@ public class Transaction {
                 initialBalance= rs.getDouble("Balance");
             }
 
-            total = initialBalance - this.transactionAmount;
+            if (this.transactionAmount > initialBalance)
+                total = initialBalance - initialBalance;
+            else
+                total = initialBalance - this.transactionAmount;
 
             sql = "UPDATE CheckingAccount SET Balance='" +  total + "' WHERE CustomerID= '" + this.customerId + "' && AccountNumber='" + this.accountNumber + "'" ;
 
