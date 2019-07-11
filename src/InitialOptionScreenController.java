@@ -143,7 +143,7 @@ public class InitialOptionScreenController {
         // the FXML loader object to load the UI design
         FXMLLoader loader = new FXMLLoader();
         // specify the file location
-        loader.setLocation(getClass().getResource("ManageTellersScreen.fxml"));
+        loader.setLocation(getClass().getResource("ManageStaffScreen.fxml"));
 
         // the object representing the root node of the scene
         Parent parent;
