@@ -10,7 +10,7 @@ import java.util.Random;
 import java.sql.*;
 
 
-public class CreditCard {
+public class CreditCard extends Customer{
     final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
     final String USERNAME = "root";
     final String PASSWORD = "password123";

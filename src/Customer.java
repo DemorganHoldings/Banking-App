@@ -9,6 +9,9 @@ public class Customer {
     private String customerPhoneNum;
     private String customerEmailAddress;
 
+    public Customer(){
+    }
+
     public Customer(String name, String address, String social, String phone, String email) {
         this.customerName = name;
         this.customerAddress = address;

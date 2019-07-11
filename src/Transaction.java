@@ -108,6 +108,10 @@ public class Transaction {
         this.transactionDescription = transactionDescription;
     }
 
+    public String getTransferAccount() {
+        return transferAccount;
+    }
+
     public void withdraw(){
         double initialBalance = 0, total = 0;
 

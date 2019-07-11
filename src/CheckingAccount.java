@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Random;
 
-public class CheckingAccount {
+public class CheckingAccount extends Customer {
     private String customerId;
     private String accountNumber;
     private double accountBalance;

@@ -85,6 +85,7 @@ public class NewTransactionScreenController {
     // method for initializing the window
     public void initialize(String id, String accountNum) {
         customerID = id;
+        System.out.println(customerID);
         accountNumber = accountNum;
 
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
@@ -247,13 +248,18 @@ public class NewTransactionScreenController {
     }
 
     public void creditCard(ActionEvent e){
-        CheckingAccountScreenController controller = new CheckingAccountScreenController();
-        controller.creditCardButton(e);
+        CreditCardScreenController controller = new CreditCardScreenController();
+        controller.creditCardButton(e, customerID);
+    }
+
+    public void report(ActionEvent e){
+        ReportsScreenController controller = new ReportsScreenController();
+        controller.reportsButton(e, customerID);
     }
 
     public void logout(ActionEvent e) {
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
-        controller.creditCardButton(e);
+        controller.logOut(e);
     }
 
 }
