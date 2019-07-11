@@ -1,13 +1,8 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.*;
 import java.text.DecimalFormat;
@@ -65,20 +60,25 @@ public class CheckingAccountScreenController {
     @FXML
     private Label labelTransactionAmount;
 
+    //Declare variables customerID and accountNum
     private String customerID, accountNum;
 
+    //Initialize variable for database connection
     private final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
     private final String USERNAME = "root";
     private final String PASSWORD = "password123";
 
+
+    //Decimalformat object for formatting
     DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
 
 
-    // method for initializing the window
+    /**
+     * Method for initializing the window and setting the labels
+     * @param id Customer ID
+     */
     public void initialize(String id) {
         customerID = id;
-
-        DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -115,6 +115,10 @@ public class CheckingAccountScreenController {
 
     }
 
+    /**
+     * Method for displaying the transactions on screen
+     * @param account A CheckingAccount Object
+     */
     public void displayTransactions(CheckingAccount account) {
         account.getTransactions();
 
@@ -133,6 +137,10 @@ public class CheckingAccountScreenController {
         }
     }
 
+    /**
+     * Method for going to the NewTransactionScreen
+     * @param e An ActionEvent object
+     */
     public void newTransaction(ActionEvent e) {
         try {
             // the FXML loader object to load the UI design
@@ -168,12 +176,12 @@ public class CheckingAccountScreenController {
     }
 
 
-
+    // Menu Button Items
 
     /**
-     * Menu Button Items
+     * Method for going to the InitialOptionScreen
+     * @param e An ActionEvent object
      */
-
     public void userAccountButton(ActionEvent e) {
         try {
             // the FXML loader object to load the UI design
@@ -205,6 +213,11 @@ public class CheckingAccountScreenController {
         }
     }
 
+    /**
+     * Method for going to the CheckingAccountScreen
+     * @param e An ActionEvent object
+     * @param id Customer ID
+     */
     public void checkingAccountButton(ActionEvent e, String id) {
         // the FXML loader object to load the UI design
         FXMLLoader loader = new FXMLLoader();
@@ -235,16 +248,28 @@ public class CheckingAccountScreenController {
         }
     }
 
+    /**
+     * Method for going to the creditCardScreen
+     * @param e An ActionEvent object
+     */
     public void creditCard(ActionEvent e){
         CreditCardScreenController controller = new CreditCardScreenController();
         controller.creditCardButton(e, customerID);
     }
 
+    /**
+     * Method for going to the reportScreen
+     * @param e An ActionEvent object
+     */
     public void report(ActionEvent e){
         ReportsScreenController controller = new ReportsScreenController();
         controller.reportsButton(e, customerID);
     }
 
+    /**
+     * Method for going to the Login screen
+     * @param e An ActionEvent object
+     */
     public void logOut(ActionEvent e){
         // the FXML loader object to load the UI design
         FXMLLoader loader = new FXMLLoader();

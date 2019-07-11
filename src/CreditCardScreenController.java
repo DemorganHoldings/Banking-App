@@ -5,14 +5,9 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.DecimalFormat;
-import java.util.function.DoubleBinaryOperator;
 
 public class CreditCardScreenController {
 
@@ -72,10 +67,18 @@ public class CreditCardScreenController {
 
     }
 
+    //Declare variables customerID, accountNum, and bal
     private String customerID, accountNum;
-    double bal;
+    private double bal;
+
+    //DecimalFormatter Object to format money
     DecimalFormat dollarFormatter = new DecimalFormat("#,##0.00");
 
+
+    /**
+     * Method for initializing the window and setting the labels
+     * @param id Customer ID
+     */
     public void initialize(String id) {
         customerID = id;
 
@@ -110,7 +113,7 @@ public class CreditCardScreenController {
                 labelAccountBalance.setText(moneyFormat.format(bal));
             }
 
-            CreditCard newCard = new CreditCard(customerID, 0);
+            CreditCard newCard = new CreditCard(customerID);
 
             if(newCard.checkDBForExistingCreditCard()){
                 labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
@@ -136,21 +139,54 @@ public class CreditCardScreenController {
         }
     }
 
+    /**
+     * Method to apply for Credit card
+     */
     public void applyForCreditCard() {
-            String creditScoreInput;
-            String balanceInput;
-            double accountBalance = bal;
-            double creditScore = 0;
-            double creditLimit = 0;
-            boolean hasCreditCard = false;
+        String creditScoreInput;
+        String balanceInput;
+        double accountBalance = bal;
+        double creditScore = 0;
+        double creditLimit = 0;
+        boolean hasCreditCard = false;
 
-            creditScoreInput = textboxCreditScore.getText();
-            creditScore = Double.parseDouble(creditScoreInput);
+        creditScoreInput = textboxCreditScore.getText();
+        creditScore = Double.parseDouble(creditScoreInput);
 
-            if (creditScore > 800 && accountBalance > 10000) {
-                creditLimit = accountBalance * 0.20;
-                CreditCard newCard = new CreditCard(customerID, creditLimit);
+        if (creditScore > 800 && accountBalance > 10000) {
+            creditLimit = accountBalance * 0.20;
+            CreditCard newCard = new CreditCard(customerID, creditLimit);
 
+            labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
+            newCard.updateDBWithCreditCard();
+            labelCreditCardNumber.setVisible(true);
+            labelCreditCardExpiration.setVisible(true);
+            labelCreditCardCvvCode.setVisible(true);
+            imageviewCreditCard.setVisible(true);
+            labelExistingCreditCard.setVisible(true);
+            newCard.displayCreditCard();
+            labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+            labelCreditCardExpiration.setText(newCard.getExpirationDate());
+            labelCreditCardCvvCode.setText(newCard.getCvvCode());
+
+        }
+        else if (creditScore > 740 && accountBalance > 8000) {
+            creditLimit = accountBalance * 0.15;
+            CreditCard newCard = new CreditCard(customerID, creditLimit);
+            hasCreditCard = newCard.checkDBForExistingCreditCard();
+
+            if (hasCreditCard) {
+                labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
+                newCard.displayCreditCard();
+                labelCreditCardNumber.setVisible(true);
+                labelCreditCardExpiration.setVisible(true);
+                labelCreditCardCvvCode.setVisible(true);
+                imageviewCreditCard.setVisible(true);
+                labelExistingCreditCard.setVisible(true);
+                labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                labelCreditCardCvvCode.setText(newCard.getCvvCode());                }
+            else {
                 labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
                 newCard.updateDBWithCreditCard();
                 labelCreditCardNumber.setVisible(true);
@@ -162,113 +198,96 @@ public class CreditCardScreenController {
                 labelCreditCardNumber.setText(newCard.getCreditCardNumber());
                 labelCreditCardExpiration.setText(newCard.getExpirationDate());
                 labelCreditCardCvvCode.setText(newCard.getCvvCode());
+            }
+        }
+        else if (creditScore > 670 && accountBalance > 6000) {
+            creditLimit = accountBalance * 0.10;
+            CreditCard newCard = new CreditCard(customerID, creditLimit);
+            hasCreditCard = newCard.checkDBForExistingCreditCard();
 
+            if (hasCreditCard) {
+                labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
+                newCard.displayCreditCard();
+                labelCreditCardNumber.setVisible(true);
+                labelCreditCardExpiration.setVisible(true);
+                labelCreditCardCvvCode.setVisible(true);
+                imageviewCreditCard.setVisible(true);
+                labelExistingCreditCard.setVisible(true);
+                labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                labelCreditCardCvvCode.setText(newCard.getCvvCode());                }
+            else {
+                labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
+                newCard.updateDBWithCreditCard();
+                labelCreditCardNumber.setVisible(true);
+                labelCreditCardExpiration.setVisible(true);
+                labelCreditCardCvvCode.setVisible(true);
+                imageviewCreditCard.setVisible(true);
+                labelExistingCreditCard.setVisible(true);
+                newCard.displayCreditCard();
+                labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                labelCreditCardCvvCode.setText(newCard.getCvvCode());
             }
-            else if (creditScore > 740 && accountBalance > 8000) {
-                creditLimit = accountBalance * 0.15;
-                CreditCard newCard = new CreditCard(customerID, creditLimit);
-                hasCreditCard = newCard.checkDBForExistingCreditCard();
+        }
+        else if (creditScore > 580 && accountBalance > 4000) {
+            creditLimit = accountBalance * 0.05;
+            CreditCard newCard = new CreditCard(customerID, creditLimit);
+            hasCreditCard = newCard.checkDBForExistingCreditCard();
 
-                if (hasCreditCard) {
-                    labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
-                    newCard.displayCreditCard();
-                    labelCreditCardNumber.setVisible(true);
-                    labelCreditCardExpiration.setVisible(true);
-                    labelCreditCardCvvCode.setVisible(true);
-                    imageviewCreditCard.setVisible(true);
-                    labelExistingCreditCard.setVisible(true);
-                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
-                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
-                    labelCreditCardCvvCode.setText(newCard.getCvvCode());                }
-                else {
-                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
-                    newCard.updateDBWithCreditCard();
-                    labelCreditCardNumber.setVisible(true);
-                    labelCreditCardExpiration.setVisible(true);
-                    labelCreditCardCvvCode.setVisible(true);
-                    imageviewCreditCard.setVisible(true);
-                    labelExistingCreditCard.setVisible(true);
-                    newCard.displayCreditCard();
-                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
-                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
-                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
-                }
+            if (hasCreditCard) {
+                labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
+                newCard.displayCreditCard();
+                labelCreditCardNumber.setVisible(true);
+                labelCreditCardExpiration.setVisible(true);
+                labelCreditCardCvvCode.setVisible(true);
+                imageviewCreditCard.setVisible(true);
+                labelExistingCreditCard.setVisible(true);
+                labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                labelCreditCardCvvCode.setText(newCard.getCvvCode());                }
+            else {
+                labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
+                newCard.updateDBWithCreditCard();
+                labelCreditCardNumber.setVisible(true);
+                labelCreditCardExpiration.setVisible(true);
+                labelCreditCardCvvCode.setVisible(true);
+                imageviewCreditCard.setVisible(true);
+                labelExistingCreditCard.setVisible(true);
+                newCard.displayCreditCard();
+                labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                labelCreditCardCvvCode.setText(newCard.getCvvCode());
             }
-            else if (creditScore > 670 && accountBalance > 6000) {
-                creditLimit = accountBalance * 0.10;
-                CreditCard newCard = new CreditCard(customerID, creditLimit);
-                hasCreditCard = newCard.checkDBForExistingCreditCard();
-
-                if (hasCreditCard) {
-                    labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
-                    newCard.displayCreditCard();
-                    labelCreditCardNumber.setVisible(true);
-                    labelCreditCardExpiration.setVisible(true);
-                    labelCreditCardCvvCode.setVisible(true);
-                    imageviewCreditCard.setVisible(true);
-                    labelExistingCreditCard.setVisible(true);
-                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
-                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
-                    labelCreditCardCvvCode.setText(newCard.getCvvCode());                }
-                else {
-                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
-                    newCard.updateDBWithCreditCard();
-                    labelCreditCardNumber.setVisible(true);
-                    labelCreditCardExpiration.setVisible(true);
-                    labelCreditCardCvvCode.setVisible(true);
-                    imageviewCreditCard.setVisible(true);
-                    labelExistingCreditCard.setVisible(true);
-                    newCard.displayCreditCard();
-                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
-                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
-                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
-                }
-            }
-            else if (creditScore > 580 && accountBalance > 4000) {
-                creditLimit = accountBalance * 0.05;
-                CreditCard newCard = new CreditCard(customerID, creditLimit);
-                hasCreditCard = newCard.checkDBForExistingCreditCard();
-
-                if (hasCreditCard) {
-                    labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
-                    newCard.displayCreditCard();
-                    labelCreditCardNumber.setVisible(true);
-                    labelCreditCardExpiration.setVisible(true);
-                    labelCreditCardCvvCode.setVisible(true);
-                    imageviewCreditCard.setVisible(true);
-                    labelExistingCreditCard.setVisible(true);
-                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
-                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
-                    labelCreditCardCvvCode.setText(newCard.getCvvCode());                }
-                else {
-                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
-                    newCard.updateDBWithCreditCard();
-                    labelCreditCardNumber.setVisible(true);
-                    labelCreditCardExpiration.setVisible(true);
-                    labelCreditCardCvvCode.setVisible(true);
-                    imageviewCreditCard.setVisible(true);
-                    labelExistingCreditCard.setVisible(true);
-                    newCard.displayCreditCard();
-                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
-                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
-                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
-                }
-            }
-            else if (creditScore > 0) {
-                labelCreditCardApplicationStatus.setText("Denied, Your credit score or checking account balance is too low.");
-            }
+        }
+        else if (creditScore > 0) {
+            labelCreditCardApplicationStatus.setText("Denied, Your credit score or checking account balance is too low.");
+        }
     }
 
+    /**
+     * Method for going to the InitialOptionScreen
+     * @param e An ActionEvent object
+     */
     public void userSearch(ActionEvent e){
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.userAccountButton(e);
     }
 
+    /**
+     * Method for going to the CheckingAccountScreen
+     * @param e An ActionEvent object
+     */
     public void checkingAccount(ActionEvent e){
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.checkingAccountButton(e, customerID);
     }
 
+    /**
+     * Method for going to the CreditCardScreen
+     * @param e An ActionEvent object
+     * @param id Customer ID
+     */
     public void creditCardButton(ActionEvent e, String id) {
         // the FXML loader object to load the UI design
         FXMLLoader loader = new FXMLLoader();
@@ -299,11 +318,19 @@ public class CreditCardScreenController {
         }
     }
 
+    /**
+     * Method for going to the ReportScreen
+     * @param e An ActionEvent object
+     */
     public void report(ActionEvent e){
         ReportsScreenController controller = new ReportsScreenController();
         controller.reportsButton(e, customerID);
     }
 
+    /**
+     * Method for going to the LoginScreen
+     * @param e An ActionEvent object
+     */
     public void logout(ActionEvent e) {
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.logOut(e);

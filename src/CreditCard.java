@@ -1,25 +1,29 @@
-import javax.xml.transform.Result;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Random;
-import java.sql.*;
 
 public class CreditCard extends Customer{
-    final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-    final String USERNAME = "root";
-    final String PASSWORD = "password123";
 
+    //fields
     private String customerId;
     private String creditCardNumber;
     private String expirationDate;
     private String cvvCode;
     private double creditLimit;
 
+    //Initialize variable for database connection
+    final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
+    final String USERNAME = "root";
+    final String PASSWORD = "password123";
+
+    /**
+     * Constructor for new CreditCard Object
+     * @param id Customer ID
+     * @param limit Credit Limit
+     */
     public CreditCard(String id, double limit) {
         this.customerId = id;
         this.creditLimit = limit;
@@ -28,6 +32,16 @@ public class CreditCard extends Customer{
         generateCvvCode();
     }
 
+    /**
+     * Constructor for existing CreditCard Object
+     * @param id
+     */
+    public CreditCard(String id) {
+        this.customerId = id;
+    }
+
+
+    //Getters and Setters
     public String getCustomerId() {
         return customerId;
     }
@@ -40,6 +54,9 @@ public class CreditCard extends Customer{
         return creditCardNumber;
     }
 
+    /**
+     * Generate random Credit Card Number
+     */
     public void generateCreditCardNumber() {
         String creditCardNum ="4100 "; //Visa Card Identifier
         Random rand = new Random();
@@ -55,6 +72,9 @@ public class CreditCard extends Customer{
         return expirationDate;
     }
 
+    /**
+     * Generate a Expiration Date
+     */
     public void generateExpirationDate() {
         String formattedExpirationDate;
         Calendar cal = Calendar.getInstance();
@@ -70,6 +90,9 @@ public class CreditCard extends Customer{
         return cvvCode;
     }
 
+    /**
+     * Generate a random CCV Code
+     */
     public void generateCvvCode() {
         Random rand = new Random();
         int randomNumber = rand.nextInt(999) + 100;
@@ -81,6 +104,10 @@ public class CreditCard extends Customer{
         return creditLimit;
     }
 
+    /**
+     * Checks database to see if user already has a credit card
+     * @return true or false based on if Credit Card Exists
+     */
     public boolean checkDBForExistingCreditCard() {
         String custId = "";
         boolean hasCreditCard = false;
@@ -111,6 +138,9 @@ public class CreditCard extends Customer{
         return hasCreditCard;
     }
 
+    /**
+     * Updates the Database with the new Credit card information
+     */
     public void updateDBWithCreditCard(){
 
         try {
@@ -134,6 +164,9 @@ public class CreditCard extends Customer{
         }
     }
 
+    /**
+     * Pulls the Credit Card information from Database
+     */
     public void displayCreditCard(){
 
         try {
