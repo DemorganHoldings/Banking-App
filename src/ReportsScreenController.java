@@ -133,6 +133,7 @@ public class ReportsScreenController {
                         account.transactions.get(i).getTransactionDescription());
             }
 
+            labelStatementMessage.setText("Report Generated");
 
             outputFile.close();
         }
