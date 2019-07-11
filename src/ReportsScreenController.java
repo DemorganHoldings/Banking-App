@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 
 public class ReportsScreenController {
 
@@ -54,6 +55,8 @@ public class ReportsScreenController {
 
     private String customerID, accountNum;
 
+    DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
+
     public void initialize(String id) {
         customerID = id;
 
@@ -62,8 +65,6 @@ public class ReportsScreenController {
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
         final String PASSWORD = "password123";
-
-        DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -117,23 +118,29 @@ public class ReportsScreenController {
         account.getTransactions();
 
         try {
+            LocalDate currentDate = LocalDate.now(); // Create a date object
             File file = new File(filePath + "/Report.txt");
             FileWriter fw = new FileWriter(file, false);
             PrintWriter outputFile = new PrintWriter(fw);
-            outputFile.println("Account Number\tTransaction ID\tTransaction Type\tTransaction Amount\t" +
-                    "Date & Time\tDescription");
+            outputFile.println("SP & Demorgan Financial");
+            outputFile.println(" ");
+            outputFile.println("Checking Account Statement");
+            outputFile.println("Generated on " + currentDate + "\n");
+            outputFile.println(" ");
+            outputFile.println("Account Number\t\tTransaction ID\t\t\tTransaction Type\tTransaction Amount\t" +
+                    "Date & Time\t\t\tDescription");
             outputFile.println("----------------------------------------------------------------------------------------" +
-                    "----------------------------");
+                    "------------------------------------------------------------------------------------");
             for (int i = 0; i < account.transactions.size(); i++){
                 outputFile.println(account.transactions.get(i).getAccountNumber() + "\t\t" +
                         account.transactions.get(i).getTransactionId() + "\t\t" +
                         account.transactions.get(i).getTransactionType() + "\t\t" +
-                        account.transactions.get(i).getTransactionAmount() + "\t" +
-                        account.transactions.get(i).getTransactionDateTime() + "\t" +
+                        moneyFormat.format(account.transactions.get(i).getTransactionAmount()) + "\t\t\t" +
+                        account.transactions.get(i).getTransactionDateTime() + "\t\t" +
                         account.transactions.get(i).getTransactionDescription());
             }
 
-            labelStatementMessage.setText("Report Generated");
+            labelStatementMessage.setText("Report has been generated and saved to " + filePath + "/Report.txt");
 
             outputFile.close();
         }
