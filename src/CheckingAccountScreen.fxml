@@ -21,11 +21,11 @@
                   <Insets left="50.0" top="35.0" />
                </HBox.margin>
                <font>
-                  <Font name="Ikaros-Regular" size="18.0" />
+                  <Font size="18.0" />
                </font></Button>
             <Button fx:id="buttonCheckingAccountCheckingAccount" alignment="CENTER_RIGHT" layoutX="215.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Checking Account" textFill="WHITE">
                <font>
-                  <Font name="Ikaros-Regular" size="18.0" />
+                  <Font size="18.0" />
                </font>
                <HBox.margin>
                   <Insets left="10.0" top="35.0" />
@@ -33,7 +33,7 @@
             </Button>
             <Button fx:id="buttonCreditCardCheckingAccount" alignment="CENTER_RIGHT" layoutX="354.0" layoutY="45.0" mnemonicParsing="false" onAction="#creditCard" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Credit Card" textFill="WHITE">
                <font>
-                  <Font name="Ikaros-Regular" size="18.0" />
+                  <Font size="18.0" />
                </font>
                <HBox.margin>
                   <Insets left="10.0" top="35.0" />
@@ -41,7 +41,7 @@
             </Button>
             <Button fx:id="buttonReportsCheckingAccount" alignment="CENTER_RIGHT" layoutX="531.0" layoutY="45.0" mnemonicParsing="false" onAction="#report" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Reports" textFill="WHITE">
                <font>
-                  <Font name="Ikaros-Regular" size="18.0" />
+                  <Font size="18.0" />
                </font>
                <HBox.margin>
                   <Insets left="10.0" top="35.0" />
@@ -49,7 +49,7 @@
             </Button>
             <Button fx:id="buttonLogoutCheckingAccount" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" onAction="#logOut" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
                <font>
-                  <Font name="Ikaros-Regular" size="18.0" />
+                  <Font size="18.0" />
                </font>
                <HBox.margin>
                   <Insets left="425.0" top="35.0" />
