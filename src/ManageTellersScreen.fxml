@@ -1,40 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InitialOptionScreenController">
-   <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #e91e63;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="103.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Logo_White.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="buttonManageTellers" mnemonicParsing="false" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: #e91e63;" text="Manage Tellers" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="50.0" top="35.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="buttonLogoutInitialOptionScreen" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" onAction="#logOut" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="770.0" top="35.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </top>
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -82,4 +55,31 @@
          </children>
       </Pane>
    </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #e91e63;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="103.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Logo_White.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonManageTellers" mnemonicParsing="false" prefHeight="39.0" prefWidth="123.0" style="-fx-background-color: #e91e63;" text="User Search" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" top="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonLogoutInitialOptionScreen" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" onAction="#logOut" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="800.0" top="35.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>
