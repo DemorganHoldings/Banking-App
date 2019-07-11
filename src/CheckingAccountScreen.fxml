@@ -100,14 +100,46 @@
                   </Label>
                </children>
             </Pane>
-            <TableView fx:id="tableTransactionList" layoutX="112.0" layoutY="118.0" prefHeight="484.0" prefWidth="1068.0">
-              <columns>
-                <TableColumn fx:id="columnTransactionDate" prefWidth="120.0" text="Date" />
-                <TableColumn fx:id="columnTransactionType" prefWidth="179.0" text="Transaction Type" />
-                  <TableColumn fx:id="columnTransactionDescription" prefWidth="583.0" text="Description" />
-                  <TableColumn fx:id="columnTransactionAmount" minWidth="0.0" prefWidth="185.0" text="Amount" />
-              </columns>
-            </TableView>
+            <Label fx:id="labelTransactionDateTime" layoutX="158.0" layoutY="162.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTransactionType" layoutX="333.0" layoutY="162.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTransactionDescription" layoutX="512.0" layoutY="162.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTransactionAmount" layoutX="1003.0" layoutY="162.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="1003.0" layoutY="137.0" prefHeight="20.0" prefWidth="134.0" text="Amount">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="512.0" layoutY="137.0" prefHeight="20.0" prefWidth="477.0" text="Description">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="333.0" layoutY="137.0" prefHeight="20.0" prefWidth="155.0" text="Transaction Type">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="158.0" layoutY="137.0" prefHeight="20.0" prefWidth="153.0" text="Date and Time">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>
