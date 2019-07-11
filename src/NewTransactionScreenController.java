@@ -162,6 +162,8 @@ public class NewTransactionScreenController {
         } else {
             System.out.println("File is not Valid.");
         }
+
+        System.out.println(filePath);
     }
 
     public String readCheck() throws IOException{
@@ -179,6 +181,9 @@ public class NewTransactionScreenController {
 
         // Close the file.
         inputFile.close();
+
+        amount = amount.replaceAll("," ,"");
+        amount = amount.replaceAll("\\$", "");
 
         return amount;
     }
