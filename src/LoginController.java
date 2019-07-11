@@ -22,6 +22,10 @@ public class LoginController {
     @FXML
     private TextField textboxPassword;
 
+    /**
+     * Login button listener
+     * @param e action event object
+     */
     public void loginButtonListener(ActionEvent e){
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
@@ -56,6 +60,10 @@ public class LoginController {
         }
     }
 
+    /**
+     * Proceed to next screen after successful login
+     * @param e action event object
+     */
     public void goToInitialOptionScreen(ActionEvent e) {
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.userAccountButton(e);

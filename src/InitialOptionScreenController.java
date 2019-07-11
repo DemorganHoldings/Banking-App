@@ -52,6 +52,12 @@ public class InitialOptionScreenController {
     private final String USERNAME = "root";
     private final String PASSWORD = "password123";
 
+    /**
+     * Create new account method and listener for create new button
+     * Create new customer accounts and inserts into database
+     * Also creates new checking accounts and inserts into database
+     * @param e action event object
+     */
     public void createAccount(ActionEvent e){
         String name, address, phone, email, social;
 
@@ -99,6 +105,11 @@ public class InitialOptionScreenController {
         }
     }
 
+    /**
+     * Search account button listener
+     * Searches database for existing customers and pulls up their checking account information
+     * @param e action event object
+     */
     public void searchAccount(ActionEvent e) {
         String name, social;
 
@@ -134,6 +145,10 @@ public class InitialOptionScreenController {
         }
     }
 
+    /**
+     * Manage bank tellers button listener
+     * @param e action event object
+     */
     public void manageTellers(ActionEvent e){
         // the FXML loader object to load the UI design
         FXMLLoader loader = new FXMLLoader();
@@ -161,6 +176,10 @@ public class InitialOptionScreenController {
         }
     }
 
+    /**
+     * Logout button listener
+     * @param e action event object
+     */
     public void logOut(ActionEvent e) {
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
         controller.logOut(e);

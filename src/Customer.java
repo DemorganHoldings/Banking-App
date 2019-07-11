@@ -9,9 +9,18 @@ public class Customer {
     private String customerPhoneNum;
     private String customerEmailAddress;
 
+    //no arg constructor
     public Customer(){
     }
 
+    /**
+     * Customer constructor for creating new customer objects
+     * @param name customer name
+     * @param address customer address
+     * @param social social security number
+     * @param phone phone number
+     * @param email email address
+     */
     public Customer(String name, String address, String social, String phone, String email) {
         this.customerName = name;
         this.customerAddress = address;
@@ -20,6 +29,9 @@ public class Customer {
         this.customerEmailAddress = email;
     }
 
+    /**
+     * Generate customer id
+     */
     public void generateCustomerId() {
         LocalDate currentDate = LocalDate.now(); // Create a date object
         Random rand = new Random();
@@ -28,6 +40,7 @@ public class Customer {
         this.customerId = "SPC-" + currentDate + "-" + randomNumberString;
     }
 
+    //Getters and Setters
     public void setCustomerId(String customerId) {this.customerId = customerId;}
 
     public String getCustomerId() {

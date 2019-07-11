@@ -78,8 +78,6 @@ public class CheckingAccountScreenController {
     public void initialize(String id) {
         customerID = id;
 
-        DecimalFormat moneyFormat = new DecimalFormat("$#,##0.00");
-
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
