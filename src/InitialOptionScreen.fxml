@@ -16,7 +16,7 @@
                   <Image url="@Logo_White.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonManageTellers" mnemonicParsing="false" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: #e91e63;" text="Manage Tellers" textFill="WHITE">
+            <Button fx:id="buttonManageTellers" mnemonicParsing="false" onAction="#manageTellers" prefHeight="39.0" prefWidth="173.0" style="-fx-background-color: #e91e63;" text="Manage Staff" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -38,7 +38,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="265.0" layoutY="196.0" prefHeight="197.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
+            <Pane layoutX="265.0" layoutY="196.0" prefHeight="210.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
                <children>
                   <Label layoutX="29.0" layoutY="14.0" text="Existing Customer" textFill="#e91e63">
                      <font>
@@ -52,6 +52,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
+                  <Label fx:id="warningLabel" alignment="CENTER" layoutX="7.0" layoutY="188.0" prefHeight="17.0" prefWidth="230.0" textFill="RED" />
                </children>
             </Pane>
             <Pane layoutX="754.0" layoutY="169.0" prefHeight="279.0" prefWidth="243.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">

@@ -47,6 +47,8 @@ public class LoginController {
                 else {
                     labelLoginErrorMessage.setText("Login Error, Check username or password");
                 }
+
+                conn.close();
             }
         }
         catch (Exception ex) {
