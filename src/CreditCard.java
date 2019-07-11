@@ -87,7 +87,7 @@ public class CreditCard extends Customer{
         try {
 
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
-            Statement stmt = conn.createStatement(); //Create new statement object
+            Statement stmt = conn.createStatement(); //Create new statement OBJECT
             String sql = "SELECT * from CreditCard";
             ResultSet rs = stmt.executeQuery(sql);
 
