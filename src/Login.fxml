@@ -10,7 +10,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="504.0" layoutY="231.0" prefHeight="281.0" prefWidth="265.0" style="-fx-background-color: #F5F5F5;">
+            <Pane layoutX="504.0" layoutY="231.0" prefHeight="281.0" prefWidth="265.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #000000;">
                <children>
                   <ImageView fitHeight="94.0" fitWidth="133.0" layoutX="71.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
