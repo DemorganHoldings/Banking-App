@@ -101,7 +101,6 @@ public class CreditCard extends Customer{
                     this.cvvCode = code;
                     this.creditLimit = rs.getDouble("CreditLimit");
 
-                    System.out.println(this.creditCardNumber + " " + this.cvvCode + " " + this.creditLimit);
                     hasCreditCard = true;
                 }
                 else {
@@ -144,7 +143,7 @@ public class CreditCard extends Customer{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
 
-            String sql = "SELECT 'CreditCardNum', 'ExpirationDate', 'CVV` FROM 'CreditCard' WHERE 'CustomerID' = " + "'" + customerId + "'";
+            String sql = "SELECT 'CreditCardNum', 'ExpirationDate', 'CVV' FROM CreditCard WHERE CustomerID = '" + customerId + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {

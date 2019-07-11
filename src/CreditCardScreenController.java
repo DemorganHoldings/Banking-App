@@ -255,7 +255,7 @@ public class CreditCardScreenController {
                 }
             }
             else if (creditScore > 0) {
-                labelCreditCardApplicationStatus.setText("Denied, Your credit score is too low.");
+                labelCreditCardApplicationStatus.setText("Denied, Your credit score or checking account balance is too low.");
             }
     }
 
