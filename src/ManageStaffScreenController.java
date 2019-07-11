@@ -232,4 +232,14 @@ public class ManageStaffScreenController {
             System.out.println(ex.getMessage());
         }
     }
+
+    public void userSearch(ActionEvent e){
+        CheckingAccountScreenController controller = new CheckingAccountScreenController();
+        controller.userAccountButton(e);
+    }
+
+    public void logout(ActionEvent e) {
+        CheckingAccountScreenController controller = new CheckingAccountScreenController();
+        controller.logOut(e);
+    }
 }

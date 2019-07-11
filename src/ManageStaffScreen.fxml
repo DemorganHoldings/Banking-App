@@ -139,7 +139,7 @@
                   <Image url="@Logo_White.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonUserSearch" mnemonicParsing="false" prefHeight="39.0" prefWidth="123.0" style="-fx-background-color: #e91e63;" text="User Search" textFill="WHITE">
+            <Button fx:id="buttonUserSearch" mnemonicParsing="false" onAction="#userSearch" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #e91e63;" text="User Search" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -147,7 +147,7 @@
                   <Insets left="50.0" top="35.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="buttonLogout" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
+            <Button fx:id="buttonLogout" alignment="CENTER_RIGHT" layoutX="656.0" layoutY="45.0" mnemonicParsing="false" onAction="#logout" style="-fx-position-shape: 50; -fx-background-color: #e91e63;" text="Logout" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
