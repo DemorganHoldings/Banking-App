@@ -120,22 +120,22 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="1003.0" layoutY="137.0" prefHeight="20.0" prefWidth="134.0" text="Amount">
+            <Label fx:id="labelAmountTitle" layoutX="1003.0" layoutY="137.0" prefHeight="20.0" prefWidth="134.0" text="Amount">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="512.0" layoutY="137.0" prefHeight="20.0" prefWidth="477.0" text="Description">
+            <Label fx:id="labelDescriptionTitle" layoutX="512.0" layoutY="137.0" prefHeight="20.0" prefWidth="477.0" text="Description">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="333.0" layoutY="137.0" prefHeight="20.0" prefWidth="155.0" text="Transaction Type">
+            <Label fx:id="labelTransactionTypeTitle" layoutX="333.0" layoutY="137.0" prefHeight="20.0" prefWidth="155.0" text="Transaction Type">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="158.0" layoutY="137.0" prefHeight="20.0" prefWidth="153.0" text="Date and Time">
+            <Label fx:id="labelDateTimeTitle" layoutX="158.0" layoutY="137.0" prefHeight="20.0" prefWidth="369.0" text="Date and Time">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

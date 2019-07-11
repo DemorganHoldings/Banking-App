@@ -30,6 +30,18 @@ public class CheckingAccountScreenController {
     private Label labelAccountBalance;
 
     @FXML
+    private Label labelTransactionTypeTitle;
+
+    @FXML
+    private Label labelDateTimeTitle;
+
+    @FXML
+    private Label labelAmountTitle;
+
+    @FXML
+    private Label labelDescriptionTitle;
+
+    @FXML
     private Button buttonCheckingAccountCheckingAccount;
 
     @FXML
@@ -106,11 +118,18 @@ public class CheckingAccountScreenController {
     public void displayTransactions(CheckingAccount account) {
         account.getTransactions();
 
-        for(int i = 0; i < account.transactions.size(); i++){
-            labelTransactionDateTime.setText(labelTransactionDateTime.getText() + "\n" + account.transactions.get(i).getTransactionDateTime());
-            labelTransactionType.setText(labelTransactionType.getText() + "\n" + account.transactions.get(i).getTransactionType());
-            labelTransactionDescription.setText(labelTransactionDescription.getText() + "\n" + account.transactions.get(i).getTransactionDescription());
-            labelTransactionAmount.setText(labelTransactionAmount.getText() + "\n" + moneyFormat.format(account.transactions.get(i).getTransactionAmount()));
+        if(account.transactions.size() == 0){
+            labelDateTimeTitle.setText("There are no Transactions for this Account.");
+            labelTransactionTypeTitle.setVisible(false);
+            labelDescriptionTitle.setVisible(false);
+            labelAmountTitle.setVisible(false);
+        }else {
+            for (int i = 0; i < account.transactions.size(); i++) {
+                labelTransactionDateTime.setText(labelTransactionDateTime.getText() + "\n" + account.transactions.get(i).getTransactionDateTime());
+                labelTransactionType.setText(labelTransactionType.getText() + "\n" + account.transactions.get(i).getTransactionType());
+                labelTransactionDescription.setText(labelTransactionDescription.getText() + "\n" + account.transactions.get(i).getTransactionDescription());
+                labelTransactionAmount.setText(labelTransactionAmount.getText() + "\n" + moneyFormat.format(account.transactions.get(i).getTransactionAmount()));
+            }
         }
     }
 
