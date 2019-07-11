@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.sql.*;
 
-
 public class CreditCard extends Customer{
     final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
     final String USERNAME = "root";
@@ -85,6 +84,7 @@ public class CreditCard extends Customer{
     public boolean checkDBForExistingCreditCard() {
         String custId = "";
         boolean hasCreditCard = false;
+        System.out.println("Test");
         try {
 
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
@@ -93,14 +93,14 @@ public class CreditCard extends Customer{
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
+                System.out.println("Test1");
                 custId = rs.getString("CustomerID");
                 if (this.customerId.equals(custId)) {
                     this.creditCardNumber = rs.getString("CreditCardNum");
                     this.expirationDate = rs.getString("ExpirationDate");
-                    String code = Integer.toString(rs.getInt("CVV"));
-                    this.cvvCode = code;
+                    this.cvvCode = Integer.toString(rs.getInt("CVV"));
                     this.creditLimit = rs.getDouble("CreditLimit");
-
+                    System.out.println("Test2");
                     hasCreditCard = true;
                 }
                 else {
@@ -143,7 +143,7 @@ public class CreditCard extends Customer{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
             Statement stmt = conn.createStatement(); //Create new statement object
 
-            String sql = "SELECT 'CreditCardNum', 'ExpirationDate', 'CVV' FROM CreditCard WHERE CustomerID = '" + customerId + "'";
+            String sql = "SELECT CreditCardNum, ExpirationDate, CVV FROM CreditCard WHERE CustomerID = '" + customerId + "'";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {

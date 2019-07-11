@@ -48,11 +48,6 @@ public class InitialOptionScreenController {
     @FXML
     private TextField textboxNewCustomerEmailAddress;
 
-    @FXML
-    void e91e63(ActionEvent event) {
-
-    }
-
     private final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
     private final String USERNAME = "root";
     private final String PASSWORD = "password123";
