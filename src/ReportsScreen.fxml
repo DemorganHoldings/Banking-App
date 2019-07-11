@@ -45,7 +45,7 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Button fx:id="buttonBrowseForFile" layoutX="693.0" layoutY="187.0" mnemonicParsing="false" onAction="#filePicker" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: #2196F3;" text="Browse" textFill="WHITE">
+            <Button fx:id="buttonBrowseForFile" layoutX="693.0" layoutY="187.0" mnemonicParsing="false" onAction="#pathPicker" prefHeight="30.0" prefWidth="79.0" style="-fx-background-color: #2196F3;" text="Browse" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -56,12 +56,12 @@
                </font>
             </Label>
             <TextField fx:id="textboxFileName" layoutX="431.0" layoutY="189.0" prefHeight="25.0" prefWidth="249.0" promptText="File Name" />
-            <Button fx:id="buttonSaveStatement" layoutX="549.0" layoutY="230.0" mnemonicParsing="false" onAction="#generateStatement" prefHeight="30.0" prefWidth="131.0" style="-fx-background-color: #2196F3;" text="Save Statement" textFill="WHITE" visible="false">
+            <Button fx:id="buttonSaveStatement" layoutX="486.0" layoutY="294.0" mnemonicParsing="false" onAction="#generateStatement" prefHeight="30.0" prefWidth="189.0" style="-fx-background-color: #2196F3;" text="Generate Statement" textFill="WHITE" visible="false">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label fx:id="labelStatementMessage" alignment="CENTER" layoutX="431.0" layoutY="271.0" prefHeight="17.0" prefWidth="248.0" />
+            <Label fx:id="labelStatementMessage" alignment="CENTER" layoutX="431.0" layoutY="239.0" prefHeight="17.0" prefWidth="248.0" />
          </children>
       </Pane>
    </center>

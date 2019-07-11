@@ -3,9 +3,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import javafx.stage.FileChooser;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-
 import java.io.*;
 
 import java.io.FileWriter;
@@ -96,25 +95,46 @@ public class ReportsScreenController {
         }
     }
 
-    public void filePicker(ActionEvent e){
-        FileChooser fc = new FileChooser();
-        File selectedFile = fc.showOpenDialog(null);
+    public void pathPicker(){
+        Stage stage = new Stage();
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(stage);
 
-        if(selectedFile != null){
-            filePath = selectedFile.getAbsolutePath();
-            textboxFileName.setText(filePath);
+        if(selectedDirectory == null){
+            textboxFileName.setText("No Directory selected");
+
+        }else{
+            filePath = selectedDirectory.getAbsolutePath();
+            textboxFileName.setText(selectedDirectory.getAbsolutePath());
             buttonSaveStatement.setVisible(true);
-        } else {
-            labelStatementMessage.setText("File is not Valid.");
         }
     }
 
-    public void generateStatement(ActionEvent e1) {
+    public void generateStatement(ActionEvent e) {
+
+        CheckingAccount account = new CheckingAccount(customerID, accountNum);
+
+        account.getTransactions();
 
         try {
-            File file = new File(filePath);
-            FileWriter fw = new FileWriter(file);
-            fw.write(customerID + " Test");
+            File file = new File(filePath + "/Report.txt");
+            FileWriter fw = new FileWriter(file, false);
+            PrintWriter outputFile = new PrintWriter(fw);
+            outputFile.println("Account Number\tTransaction ID\tTransaction Type\tTransaction Amount\t" +
+                    "Date & Time\tDescription");
+            outputFile.println("----------------------------------------------------------------------------------------" +
+                    "----------------------------");
+            for (int i = 0; i < account.transactions.size(); i++){
+                outputFile.println(account.transactions.get(i).getAccountNumber() + "\t\t" +
+                        account.transactions.get(i).getTransactionId() + "\t\t" +
+                        account.transactions.get(i).getTransactionType() + "\t\t" +
+                        account.transactions.get(i).getTransactionAmount() + "\t" +
+                        account.transactions.get(i).getTransactionDateTime() + "\t" +
+                        account.transactions.get(i).getTransactionDescription());
+            }
+
+
+            outputFile.close();
         }
         catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
