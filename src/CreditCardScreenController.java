@@ -1,10 +1,12 @@
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.*;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -71,6 +73,8 @@ public class CreditCardScreenController {
 
     public void initialize(String id) {
         customerID = id;
+
+        System.out.println(customerID);
 
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
@@ -257,13 +261,43 @@ public class CreditCardScreenController {
         controller.checkingAccountButton(e, customerID);
     }
 
-    public void creditCard(ActionEvent e){
-        CheckingAccountScreenController controller = new CheckingAccountScreenController();
-        controller.creditCardButton(e);
+    public void creditCardButton(ActionEvent e, String id) {
+        // the FXML loader object to load the UI design
+        FXMLLoader loader = new FXMLLoader();
+        // specify the file location
+        loader.setLocation(getClass().getResource("CreditCardScreen.fxml"));
+
+        // the object representing the root node of the scene
+        Parent parent;
+        // try-catch for possible errors in reading the FXML file.
+        try {
+            // load the UI
+            parent = loader.load();
+
+            // set the scene
+            Scene scene = new Scene(parent);
+
+            CreditCardScreenController controller = loader.getController();
+            controller.initialize(id);
+
+            // get the current window; i.e. the stage
+            Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+            // set the scene for the stage
+            stage.setScene(scene);
+            // show the stage
+            stage.show();
+        } catch (IOException e1) {
+            System.out.print(e1.getMessage());
+        }
+    }
+
+    public void report(ActionEvent e){
+        ReportsScreenController controller = new ReportsScreenController();
+        controller.reportsButton(e, customerID);
     }
 
     public void logout(ActionEvent e) {
         CheckingAccountScreenController controller = new CheckingAccountScreenController();
-        controller.creditCardButton(e);
+        controller.logOut(e);
     }
 }
