@@ -50,6 +50,9 @@ public class CreditCardScreenController {
     private Label labelAccountNumber;
 
     @FXML
+    private Label labelNewCreditCard;
+
+    @FXML
     private Label labelCreditCardCvvCode;
 
     @FXML
@@ -70,6 +73,7 @@ public class CreditCardScreenController {
     }
 
     private String customerID, accountNum;
+    DecimalFormat dollarFormatter = new DecimalFormat("#,##0.00");
 
     public void initialize(String id) {
         customerID = id;
@@ -106,6 +110,26 @@ public class CreditCardScreenController {
                 double bal = Double.parseDouble(rs.getString("Balance"));
                 labelAccountBalance.setText(moneyFormat.format(bal));
             }
+
+            CreditCard newCard = new CreditCard(customerID, 10000);
+            if(newCard.checkDBForExistingCreditCard()){
+                labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
+                labelCreditCardNumber.setVisible(true);
+                labelCreditCardExpiration.setVisible(true);
+                labelCreditCardCvvCode.setVisible(true);
+                imageviewCreditCard.setVisible(true);
+                labelExistingCreditCard.setVisible(true);
+                newCard.displayCreditCard();
+                labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                labelCreditCardCvvCode.setText(newCard.getCvvCode());
+
+                labelNewCreditCard.setVisible(false);
+                textboxCreditScore.setVisible(false);
+                buttonApplyForCreditCard.setVisible(false);
+            }
+
+
             conn.close();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -123,38 +147,22 @@ public class CreditCardScreenController {
             creditScoreInput = textboxCreditScore.getText();
             creditScore = Double.parseDouble(creditScoreInput);
 
-            DecimalFormat dollarFormatter = new DecimalFormat("###,##0.00");
-
             if (creditScore > 800 && accountBalance > 10000) {
                 creditLimit = accountBalance * 0.20;
                 CreditCard newCard = new CreditCard(customerID, creditLimit);
-                hasCreditCard = newCard.checkDBForExistingCreditCard();
 
-                if (hasCreditCard) {
-                    labelCreditCardApplicationStatus.setText("Customer already has a credit card with limit $" + dollarFormatter.format(newCard.getCreditLimit()));
-                    labelCreditCardNumber.setVisible(true);
-                    labelCreditCardExpiration.setVisible(true);
-                    labelCreditCardCvvCode.setVisible(true);
-                    imageviewCreditCard.setVisible(true);
-                    labelExistingCreditCard.setVisible(true);
-                    newCard.displayCreditCard();
-                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
-                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
-                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
-                }
-                else {
-                    labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
-                    newCard.updateDBWithCreditCard();
-                    labelCreditCardNumber.setVisible(true);
-                    labelCreditCardExpiration.setVisible(true);
-                    labelCreditCardCvvCode.setVisible(true);
-                    imageviewCreditCard.setVisible(true);
-                    labelExistingCreditCard.setVisible(true);
-                    newCard.displayCreditCard();
-                    labelCreditCardNumber.setText(newCard.getCreditCardNumber());
-                    labelCreditCardExpiration.setText(newCard.getExpirationDate());
-                    labelCreditCardCvvCode.setText(newCard.getCvvCode());
-                }
+                labelCreditCardApplicationStatus.setText("Approved, Your credit limit is $" + dollarFormatter.format(creditLimit));
+                newCard.updateDBWithCreditCard();
+                labelCreditCardNumber.setVisible(true);
+                labelCreditCardExpiration.setVisible(true);
+                labelCreditCardCvvCode.setVisible(true);
+                imageviewCreditCard.setVisible(true);
+                labelExistingCreditCard.setVisible(true);
+                newCard.displayCreditCard();
+                labelCreditCardNumber.setText(newCard.getCreditCardNumber());
+                labelCreditCardExpiration.setText(newCard.getExpirationDate());
+                labelCreditCardCvvCode.setText(newCard.getCvvCode());
+
             }
             else if (creditScore > 740 && accountBalance > 8000) {
                 creditLimit = accountBalance * 0.15;

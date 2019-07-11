@@ -23,19 +23,4 @@ public class BankingApp extends Application {
         //show the stage
         PrimaryStage.show();
     }
-
-    /*public void getDbConnection() {
-        final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
-        final String USERNAME = "root";
-        final String PASSWORD = "";
-
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD); //Establish database connection
-            Statement stmt = conn.createStatement(); //Create new statement object
-        }
-        catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }*/
-
 }
