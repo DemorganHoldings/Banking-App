@@ -85,7 +85,6 @@ public class NewTransactionScreenController {
     // method for initializing the window
     public void initialize(String id, String accountNum) {
         customerID = id;
-        System.out.println(customerID);
         accountNumber = accountNum;
 
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
@@ -163,8 +162,6 @@ public class NewTransactionScreenController {
         } else {
             System.out.println("File is not Valid.");
         }
-
-        System.out.println(filePath);
     }
 
     public String readCheck() throws IOException{

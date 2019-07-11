@@ -60,8 +60,6 @@ public class ReportsScreenController {
     public void initialize(String id) {
         customerID = id;
 
-        System.out.println(customerID);
-
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
         final String USERNAME = "root";
         final String PASSWORD = "password123";
