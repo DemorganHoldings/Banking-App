@@ -85,7 +85,6 @@ public class NewTransactionScreenController {
     // method for initializing the window
     public void initialize(String id, String accountNum) {
         customerID = id;
-        System.out.println(customerID);
         accountNumber = accountNum;
 
         final String DB_URL = "jdbc:mysql://142.93.91.169:3306/spDemorganDB";
@@ -163,8 +162,6 @@ public class NewTransactionScreenController {
         } else {
             System.out.println("File is not Valid.");
         }
-
-        System.out.println(filePath);
     }
 
     public String readCheck() throws IOException{
@@ -203,6 +200,8 @@ public class NewTransactionScreenController {
 
         if(radiobuttonWithdraw.isSelected()){
             val = textboxTransactionAmount.getText();
+            val = val.replaceAll("," ,"");
+            val = val.replaceAll("\\$", "");
             amount = Double.parseDouble(val);
             description = textboxTransactionDescription.getText();
             type = "Withdraw";
@@ -216,7 +215,9 @@ public class NewTransactionScreenController {
             else if(radiobuttonIsCheck.isSelected())
                 val = readCheck();
 
-            System.out.println(val);
+            val = val.replaceAll("," ,"");
+            val = val.replaceAll("\\$", "");
+
             amount = Double.parseDouble(val);
             description = textboxTransactionDescription.getText();
             type = "Deposit";
@@ -225,6 +226,8 @@ public class NewTransactionScreenController {
             transaction.updateDBWithTransaction();
         } else if(radiobuttonTransfer.isSelected()){
             val = textboxTransactionAmount.getText();
+            val = val.replaceAll("," ,"");
+            val = val.replaceAll("\\$", "");
             amount = Double.parseDouble(val);
             description = textboxTransactionDescription.getText();
             transferAccountNumber = textboxTransferToAccountNumber.getText();
