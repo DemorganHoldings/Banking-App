@@ -72,7 +72,7 @@ public class CreditCard extends Customer{
 
     public void generateCvvCode() {
         Random rand = new Random();
-        int randomNumber = rand.nextInt(999) + 1;
+        int randomNumber = rand.nextInt(999) + 100;
         String cvvCode = String.format("%03d", randomNumber);
         this.cvvCode = cvvCode;
     }
