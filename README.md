@@ -1,4 +1,4 @@
-# Banking-App
+<h1>Banking-App</h1>
 <h3>Background and Business Problem:</h3>
 
 This program would be designed for banking operations and would act as a banking system for a bank or credit union. This program would have 3 main purposes: 1) Provide tellers with the ability to create a new account and manage existing accounts for customers, 2) Provide ability to deposit, transfer, and withdraw funds, 3) Allow tellers to visualize customer banking data and bank accounts. The application is intended for use by banks or credit unions as a way to manage all their users, accounts, and account registrations/sign-ups.
@@ -18,5 +18,3 @@ This program will allow the bank to create new bank accounts for customers, moni
 <li>Permit for a database function by storing and keeping a record of bank account data and transaction history</li>
 <li>Provide a GUI interface that makes user input and viewing of banking information more user friendly</li>
 </ol>
-
-# Banking-App
